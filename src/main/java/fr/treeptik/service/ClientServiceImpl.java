@@ -10,7 +10,8 @@ import fr.treeptik.exception.DAOException;
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Client;
 
-@Service
+// Attention ne pas l'oubli pour l'injection dans le ClientManagedBean
+@Service("clientService")
 public class ClientServiceImpl extends GenericServiceImpl<Client, Integer, ClientDAO> implements
 		ClientService {
 

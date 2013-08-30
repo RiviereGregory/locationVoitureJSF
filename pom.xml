@@ -22,7 +22,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 		<spring.version>3.2.3.RELEASE</spring.version>
 		<spring.security.version>3.1.4.RELEASE</spring.security.version>
 		<hibernate.version>4.2.2.Final</hibernate.version>
@@ -137,6 +137,15 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.4</version>
+		</dependency>
+
+		<!-- Junit -->
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>

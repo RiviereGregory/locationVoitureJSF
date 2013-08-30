@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
+<h:head>
+	<title>List Client</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<h:outputText value="Clients : "></h:outputText>
+		<!-- équivalent du c:foreach h:dataTable-->
+		<!-- appele directement le clientMB.clientList qui appele le getClientList -->
+		<h:dataTable var="client" value="#{clientMB.clients}"
+			style="width: 10%">
+			<h:column>
+				<!-- equivalent de th en html -->
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<!-- les valeurs mise dessous -->
+				<h:outputText value="#{client.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nom" />
+				</f:facet>
+				<h:outputText value="#{client.nom}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Prenom" />
+				</f:facet>
+				<h:outputText value="#{client.prenom}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ACTION" />
+				</f:facet>
+				<h:commandLink action="#{clientMB.deleteClient}" value="Supprimer"></h:commandLink>
+			</h:column>
+		</h:dataTable>
+		<h:commandButton id="Index" value="Index" action="accueil"
+			ajax="false" immediate="true" />
+	</h:form>
+
+</h:body>
+</html>

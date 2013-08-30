@@ -28,7 +28,7 @@
   </context-param>
  
   <welcome-file-list>
-    <welcome-file>/pages/index.xhtml</welcome-file>
+    <welcome-file>/pages/accueil.xhtml</welcome-file>
   </welcome-file-list>
  
   <servlet>
