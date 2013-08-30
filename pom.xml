@@ -10,6 +10,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 	<name>MavenSpringJsfTemplate</name>
 	<url>http://maven.apache.org</url>
 
+	<!-- Permet de créer de nouveau repository pour recuperer les dependances -->
 	<repositories>
 		<repository>
 			<id>prime-repo</id>
@@ -86,7 +87,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 			<version>1.2</version>
 		</dependency>
 
-		<!-- Primefaces library -->
+		<!-- Primefaces library ajoute des composant graphique dans jsf -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
@@ -118,7 +119,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.17</version>
 		</dependency>
-
+		<!-- permet de faire des pool -->
 		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
@@ -131,7 +132,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
 		</dependency>
-
+		<!-- Pour faire les tests a la place de junit -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
@@ -151,9 +152,6 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<encoding>UTF-8</encoding>
-					<excludes>
-						<exclude>**\/.svn</exclude>
-					</excludes>
 				</configuration>
 			</plugin>
 

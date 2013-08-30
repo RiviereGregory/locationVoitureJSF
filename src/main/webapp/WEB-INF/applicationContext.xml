@@ -7,21 +7,25 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
-	> 
-	<context:annotation-config/>
-    <context:component-scan base-package="fr.treeptik"/>
-    
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/jsfspring" />
-        <property name="user" value="root" />
-        <property name="password" value="root" />
-        <property name="maxPoolSize" value="10" />
-        <property name="minPoolSize" value="5" />
-    </bean>
- 
-   <bean id="entityManagerFactory"
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<context:annotation-config />
+	<context:component-scan base-package="fr.treeptik" />
+
+	<!-- Autre classe pour utiliser les pool de connexion -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/jsfspring" />
+		<property name="user" value="root" />
+		<property name="password" value="root" />
+		<!-- nombre maxi de connexion simultané pour les requètes sur la base de 
+			donné -->
+		<property name="maxPoolSize" value="10" />
+		<!-- permet d'avoir 5 connexions prete au depart -->
+		<property name="minPoolSize" value="5" />
+	</bean>
+
+	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="fr.treeptik.model" />
@@ -38,5 +42,5 @@
 		p:entityManagerFactory-ref="entityManagerFactory" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
- 
+
 </beans>

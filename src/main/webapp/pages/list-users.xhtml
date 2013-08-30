@@ -1,34 +1,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>JSF_Spring_Hibernate_Project</title>
+	<title>JSF_Spring_Hibernate_Project</title>
 </h:head>
 <h:body>
-    <h:form>
-        <h:outputText value="USERs : "></h:outputText>
-        <h:dataTable id="users" var="user" value="#{userMB.userList}" style="width: 10%">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="ID" />
-                </f:facet>
-                <h:outputText value="#{user.id}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Nom" />
-                </f:facet>
-                <h:outputText value="#{user.lastName}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Prenom" />
-                </f:facet>
-                <h:outputText value="#{user.firstName}" />
-            </h:column>
-        </h:dataTable>
-    </h:form>
+	<h:form>
+		<h:outputText value="USERs : "></h:outputText>
+		<!-- équivalent du c:foreach h:dataTable-->
+		<!-- appele directement le userMB.userList qui appele le getUserList -->
+		<h:dataTable id="users" var="user" value="#{userMB.userList}"
+			style="width: 10%">
+			<h:column>
+				<!-- equivalent de th en html -->
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<!-- les valeurs mise dessous -->
+				<h:outputText value="#{user.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nom" />
+				</f:facet>
+				<h:outputText value="#{user.lastName}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Prenom" />
+				</f:facet>
+				<h:outputText value="#{user.firstName}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ACTION" />
+				</f:facet>
+				<h:commandLink action="#{userMB.deleteUser}" value="Supprimer" ></h:commandLink>
+			</h:column>
+		</h:dataTable>
+		<h:commandButton id="Index" value="Index" action="index" ajax="false"
+			immediate="true" />
+	</h:form>
 </h:body>
- 
+
 </html>

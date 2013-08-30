@@ -46,7 +46,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void deleteUser(Integer id) throws ServiceException {
-		throw new UnsupportedOperationException();
+		try {
+			userDao.remove(id);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
 	@Override
