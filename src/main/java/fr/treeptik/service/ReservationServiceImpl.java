@@ -10,7 +10,7 @@ import fr.treeptik.exception.DAOException;
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Reservation;
 
-@Service
+@Service("reservationService")
 public class ReservationServiceImpl extends
 		GenericServiceImpl<Reservation, Integer, ReservationDAO> implements ReservationService {
 

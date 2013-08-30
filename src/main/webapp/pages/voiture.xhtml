@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
+<h:head>
+	<title>Ajout voiture</title>
+</h:head>
+<h:body>
+
+	<h:form>
+
+		<table>
+
+			<tr>
+				<!-- label pour afficher le nom -->
+				<td><h:outputLabel for="marque" value="marque : " /></td>
+				<td><h:inputText id="marque"
+						value="#{voitureMB.voiture.marque}" required="true">
+						<f:validateLength minimum="2" />
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputLabel for="modele" value="modele : " /></td>
+				<td><h:inputText id="modele"
+						value="#{voitureMB.voiture.modele}">
+						<f:validateLength minimum="3" />
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputLabel for="dateMiseEnCirculation"
+						value="date de mise en circulation : " /></td>
+				<td><h:inputText id="dateMiseEnCirculation"
+						value="#{voitureMB.voiture.dateMiseEnCirculation}">
+						<!-- Format de la date que l'on veut passer -->
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<!-- Action est d'appeler la methode addUser de l'objet userMB -->
+				<td><h:commandButton id="addVoiture" value="Add"
+						action="#{voitureMB.addVoiture}" ajax="false" /></td>
+				<!-- Action est d'appeler la methode addUser de l'objet userMB 
+				avec immediate="true" sans passer par la validation du formulaire  -->
+				<td><h:commandButton id="reset" value="Reset"
+						action="#{voitureMB.reset}" ajax="false" immediate="true" /></td>
+				<!-- Action est d'appeler directement à la page avec immediate="true" 
+				sans passer par la validation du formulaire -->
+				<td><h:commandButton id="ListVoitures" value="List Voitures"
+						action="voitures" ajax="false" immediate="true" /></td>
+			</tr>
+		</table>
+	</h:form>
+
+
+</h:body>
+</html>

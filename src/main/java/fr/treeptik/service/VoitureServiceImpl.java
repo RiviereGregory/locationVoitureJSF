@@ -10,7 +10,7 @@ import fr.treeptik.exception.DAOException;
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Voiture;
 
-@Service
+@Service("voitureService")
 public class VoitureServiceImpl extends GenericServiceImpl<Voiture, Integer, VoitureDAO> implements
 		VoitureService {
 

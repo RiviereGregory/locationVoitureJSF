@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
+<h:head>
+	<title>List voiture</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<h:outputText value="Voitures : "></h:outputText>
+		<!-- équivalent du c:foreach h:dataTable-->
+		<!-- appele directement le clientMB.clientList qui appele le getClientList -->
+		<h:dataTable var="voiture" value="#{voitureMB.voitures}"
+			style="width: 10%">
+			<h:column>
+				<!-- equivalent de th en html -->
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<!-- les valeurs mise dessous -->
+				<h:outputText value="#{voiture.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Marque" />
+				</f:facet>
+				<h:outputText value="#{voiture.marque}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Modele" />
+				</f:facet>
+				<h:outputText value="#{voiture.modele}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Date de mise en circulation" />
+				</f:facet>
+				<h:outputText value="#{voiture.dateMiseEnCirculation}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ACTION" />
+				</f:facet>
+				<h:commandLink action="#{voitureMB.deleteVoiture}" value="Supprimer"></h:commandLink>
+			</h:column>
+		</h:dataTable>
+		<h:commandButton id="Index" value="Index" action="accueil"
+			ajax="false" immediate="true" />
+	</h:form>
+
+</h:body>
+</html>
