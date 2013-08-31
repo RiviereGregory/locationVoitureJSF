@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
+<h:head>
+	<title>Ajout reservation</title>
+</h:head>
+<h:body>
+
+	<h:form>
+
+		<table>
+
+			<tr>
+				<td><h:outputLabel for="voiture" value="voiture : " /></td>
+				<td><h:selectOneListbox
+						value="#{reservationMB.reservation.voiture}">
+						<f:selectItems value="#{voitureMB.voitures}" var="v"
+							itemValue="#{v}" itemLabel="#{v}"></f:selectItems>
+					</h:selectOneListbox></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="client" value="client : " /></td>
+				<td><h:selectOneListbox
+						value="#{reservationMB.reservation.client}">
+						<f:selectItems value="#{clientMB.clients}" var="c"
+							itemValue="#{c}" itemLabel="#{c}"></f:selectItems>
+					</h:selectOneListbox></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="dateReservation"
+						value="date de Reservation : " /></td>
+				<td><h:inputText id="dateReservation"
+						value="#{reservationMB.reservation.dateReservation}">
+						<!-- Format de la date que l'on veut passer -->
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputLabel for="datePriseVehicule"
+						value="date de Prise de Vehicule : " /></td>
+				<td><h:inputText id="datePriseVehicule"
+						value="#{reservationMB.reservation.datePriseVehicule}">
+						<!-- Format de la date que l'on veut passer -->
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputLabel for="dateRetour" value="date de Retour : " /></td>
+				<td><h:inputText id="dateRetour"
+						value="#{reservationMB.reservation.dateRetour}">
+						<!-- Format de la date que l'on veut passer -->
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText></td>
+			</tr>
+
+
+
+			<tr>
+				<!-- Action est d'appeler la methode addUser de l'objet userMB -->
+				<td><h:commandButton id="addReservation" value="Add"
+						action="#{reservationMB.addReservation}" ajax="false" /></td>
+				<td><h:commandButton id="reset" value="Reset"
+						action="#{reservationMB.reset}" ajax="false" immediate="true" /></td>
+				<!-- Action est d'appeler directement à la page avec immediate="true" 
+				sans passer par la validation du formulaire -->
+				<td><h:commandButton id="ListReservations"
+						value="Liste Reservations" action="reservations" ajax="false"
+						immediate="true" /></td>
+			</tr>
+		</table>
+	</h:form>
+
+
+</h:body>
+</html>

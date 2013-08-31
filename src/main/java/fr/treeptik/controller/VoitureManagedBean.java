@@ -10,7 +10,7 @@ import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Voiture;
 import fr.treeptik.service.VoitureService;
 
-@ManagedBean(name = "voitureMB")
+@ManagedBean(name = "voitureMB", eager = true)
 public class VoitureManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
