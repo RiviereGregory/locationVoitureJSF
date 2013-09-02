@@ -16,6 +16,7 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
         
          <locale-config>
      	        <default-locale>fr</default-locale>
+     	        <supported-locale>en</supported-locale>
      	   </locale-config>
 	   <resource-bundle>
 		<base-name>messages</base-name>

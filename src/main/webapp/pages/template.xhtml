@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<f:view locale="en" />
+	<!-- 	<f:view locale="en" /> -->
 	<title><ui:insert name="titre" /></title>
 
 	<style type="text/css">
@@ -16,12 +16,28 @@
 
 	<ui:insert name="titre body" />
 	<h:form>
+		<table>
+			<tr>
+				<td><h:commandLink action="#{lMB.activerFR}" immediate="true">
+						<h:graphicImage value="/images/fr.gif" style="border: 0px"
+							height="15" width="20" />
+					</h:commandLink></td>
+				<td><h:commandLink action="#{lMB.activerEN}" immediate="true">
+						<h:graphicImage value="/images/en.gif" style="border: 0px"
+							height="15" width="20" />
+					</h:commandLink></td>
+				<td width="100%"></td>
+			</tr>
+		</table>
 		<ul>
 			<li><h:commandLink action="client"
 					value="#{msg['ajout.client']}"></h:commandLink></li>
-			<li><h:commandLink action="clients" value="#{msg['liste.client']}"></h:commandLink></li>
-			<li><h:commandLink action="voiture" value="#{msg['ajout.voiture']}"></h:commandLink></li>
-			<li><h:commandLink action="voitures" value="#{msg['liste.voiture']}"></h:commandLink></li>
+			<li><h:commandLink action="clients"
+					value="#{msg['liste.client']}"></h:commandLink></li>
+			<li><h:commandLink action="voiture"
+					value="#{msg['ajout.voiture']}"></h:commandLink></li>
+			<li><h:commandLink action="voitures"
+					value="#{msg['liste.voiture']}"></h:commandLink></li>
 			<li><h:commandLink action="reservation"
 					value="#{msg['ajout.reservation']}"></h:commandLink></li>
 			<li><h:commandLink action="reservations"

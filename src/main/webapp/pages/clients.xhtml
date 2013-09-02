@@ -15,40 +15,25 @@
 	<ui:define name="titre">#{msg['titre.liste.client']}</ui:define>
 	<ui:define name="titre body">#{msg['titre.liste.client']}</ui:define>
 	<ui:define name="body">
+
+
 		<h:form>
-			<!-- <h:outputText value="Clients : "></h:outputText> -->
-			<!-- équivalent du c:foreach h:dataTable-->
-			<!-- appele directement le clientMB.clientList qui appele le getClientList -->
-			<h:dataTable var="client" value="#{clientMB.clients}"
-				style="width: 10%">
-				<h:column>
-					<!-- equivalent de th en html -->
-					<f:facet name="header">
-						<h:outputText value="#{msg['client.id']}" />
-					</f:facet>
-					<!-- les valeurs mise dessous -->
+			<p:dataTable var="client" value="#{clientMB.clients}">
+
+				<p:column headerText="#{msg['client.id']}">
 					<h:outputText value="#{client.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['client.nom']}" />
-					</f:facet>
+				</p:column>
+				<p:column headerText="#{msg['client.nom']}">
 					<h:outputText value="#{client.nom}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['client.prenom']}" />
-					</f:facet>
+				</p:column>
+				<p:column headerText="#{msg['client.prenom']}">
 					<h:outputText value="#{client.prenom}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['bouton.action']}" />
-					</f:facet>
+				</p:column>
+				<p:column headerText="#{msg['bouton.action']}">
 					<h:commandLink action="#{clientMB.deleteClient}"
 						value="#{msg['bouton.supp']}"></h:commandLink>
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"
 				action="accueil" ajax="false" immediate="true" />
 		</h:form>

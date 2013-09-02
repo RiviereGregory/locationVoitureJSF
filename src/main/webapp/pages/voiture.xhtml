@@ -24,17 +24,23 @@
 					<td><h:outputLabel for="marque"
 							value="#{msg['voiture.marque']} : " /></td>
 					<td><h:inputText id="marque"
-							value="#{voitureMB.voiture.marque}" required="true">
+							value="#{voitureMB.voiture.marque}" required="true"
+							label="#{msg['voiture.marque']}">
+							<!-- label="#{msg['voiture.marque']}" permet de modifier l'id de l'erreur-->
+
 							<f:validateLength minimum="2" />
-						</h:inputText></td>
+						</h:inputText> <!--Permet d'afficher le message d'erreur --> <h:message
+							for="marque" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="modele"
 							value="#{msg['voiture.modele']} : " /></td>
 					<td><h:inputText id="modele"
-							value="#{voitureMB.voiture.modele}" required="true">
+							value="#{voitureMB.voiture.modele}" required="true"
+							label="#{msg['voiture.modele']}">
+
 							<f:validateLength minimum="3" />
-						</h:inputText></td>
+						</h:inputText> <h:message for="modele" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="dateMiseEnCirculation"
@@ -42,10 +48,12 @@
 					<td><h:inputText id="dateMiseEnCirculation"
 							value="#{voitureMB.voiture.dateMiseEnCirculation}"
 							required="true"
-							validator="#{voitureMB.validateDateMiseEnCirculation}">
+							validator="#{voitureMB.validateDateMiseEnCirculation}"
+							label="#{msg['voiture.date']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText></td>
+
+						</h:inputText> <h:message for="dateMiseEnCirculation" /></td>
 				</tr>
 				<tr>
 					<!-- Action est d'appeler la methode addUser de l'objet userMB -->

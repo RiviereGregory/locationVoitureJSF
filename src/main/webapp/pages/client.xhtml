@@ -25,17 +25,20 @@
 	name"
 							value="#{msg['client.nom']} : " /></td>
 					<td><h:inputText id="name" value="#{clientMB.client.nom}"
-							required="true">
+							required="true" label="#{msg['client.nom']}">
 							<f:validateLength minimum="2" />
-						</h:inputText></td>
+						</h:inputText>
+						<h:message for="name" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="surname"
 							value="#{msg['client.prenom']} : " /></td>
 					<td><h:inputText id="surname"
-							value="#{clientMB.client.prenom}" required="true">
+							value="#{clientMB.client.prenom}" required="true"
+							label="#{msg['client.prenom']}">
 							<f:validateLength minimum="3" />
-						</h:inputText></td>
+						</h:inputText>
+						<h:message for="surname" /></td>
 				</tr>
 				<tr>
 					<!-- Action est d'appeler la methode addUser de l'objet userMB -->

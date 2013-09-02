@@ -42,10 +42,12 @@
 					<td><h:inputText id="dateReservation"
 							value="#{reservationMB.reservation.dateReservation}"
 							required="true"
-							validator="#{reservationMB.validateDateReservation}">
+							validator="#{reservationMB.validateDateReservation}"
+							label="#{msg['reservation.date.reservation']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText></td>
+						</h:inputText>
+						<h:message for="dateReservation" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="datePriseVehicule"
@@ -53,20 +55,24 @@
 					<td><h:inputText id="datePriseVehicule"
 							value="#{reservationMB.reservation.datePriseVehicule}"
 							required="true"
-							validator="#{reservationMB.validateDatePriseVehicule}">
+							validator="#{reservationMB.validateDatePriseVehicule}"
+							label="#{msg['reservation.date.prisevehicule']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText></td>
+						</h:inputText>
+						<h:message for="datePriseVehicule" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="dateRetour"
 							value="#{msg['reservation.date.retour']} : " /></td>
 					<td><h:inputText id="dateRetour"
 							value="#{reservationMB.reservation.dateRetour}" required="true"
-							validator="#{reservationMB.validateDateRetour}">
+							validator="#{reservationMB.validateDateRetour}"
+							label="#{msg['reservation.date.retour']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText></td>
+						</h:inputText>
+						<h:message for="dateRetour" /></td>
 				</tr>
 
 

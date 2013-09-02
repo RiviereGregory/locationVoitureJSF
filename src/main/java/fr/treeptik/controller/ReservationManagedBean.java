@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.faces.validator.ValidatorException;
 
+
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Client;
 import fr.treeptik.model.Reservation;
@@ -58,7 +59,7 @@ public class ReservationManagedBean implements Serializable {
 			e.printStackTrace();
 		}
 
-		if (dateCourante.after(dateReservation) && !dateCourante.equals(dateReservation)) {
+		if (dateCourante.after(dateReservation) && !dateCourante.equals(dateReservation)) {			
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"date reservation vous devez saisir une date future",
 					"vous devez saisir une date future"));
