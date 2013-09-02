@@ -24,7 +24,7 @@
 			<tr>
 				<td><h:outputLabel for="modele" value="modele : " /></td>
 				<td><h:inputText id="modele"
-						value="#{voitureMB.voiture.modele}">
+						value="#{voitureMB.voiture.modele}" required="true">
 						<f:validateLength minimum="3" />
 					</h:inputText></td>
 			</tr>
@@ -32,7 +32,7 @@
 				<td><h:outputLabel for="dateMiseEnCirculation"
 						value="date de mise en circulation : " /></td>
 				<td><h:inputText id="dateMiseEnCirculation"
-						value="#{voitureMB.voiture.dateMiseEnCirculation}">
+						value="#{voitureMB.voiture.dateMiseEnCirculation}" required="true">
 						<!-- Format de la date que l'on veut passer -->
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:inputText></td>

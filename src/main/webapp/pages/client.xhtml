@@ -23,7 +23,8 @@
 			</tr>
 			<tr>
 				<td><h:outputLabel for="surname" value="Prenom : " /></td>
-				<td><h:inputText id="surname" value="#{clientMB.client.prenom}">
+				<td><h:inputText id="surname" value="#{clientMB.client.prenom}"
+						required="true">
 						<f:validateLength minimum="3" />
 					</h:inputText></td>
 			</tr>

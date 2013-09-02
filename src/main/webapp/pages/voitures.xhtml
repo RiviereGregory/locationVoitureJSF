@@ -40,7 +40,9 @@
 					<h:outputText value="Date de mise en circulation" />
 				</f:facet>
 				<h:outputText value="#{voiture.dateMiseEnCirculation}">
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+						timeZone="Europe/Paris" />
 				</h:outputText>
 			</h:column>
 			<h:column>

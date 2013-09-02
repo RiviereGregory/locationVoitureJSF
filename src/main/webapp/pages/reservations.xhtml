@@ -44,7 +44,9 @@
 					<h:outputText value="Date de reservation" />
 				</f:facet>
 				<h:outputText value="#{reservation.dateReservation}">
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+						timeZone="Europe/Paris" />
 				</h:outputText>
 			</h:column>
 			<h:column>
@@ -52,7 +54,9 @@
 					<h:outputText value="Date de Prise vehicule" />
 				</f:facet>
 				<h:outputText value="#{reservation.datePriseVehicule}">
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+						timeZone="Europe/Paris" />
 				</h:outputText>
 			</h:column>
 			<h:column>
@@ -60,7 +64,9 @@
 					<h:outputText value="Date de Retour" />
 				</f:facet>
 				<h:outputText value="#{reservation.dateRetour}">
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+						timeZone="Europe/Paris" />
 				</h:outputText>
 			</h:column>
 
