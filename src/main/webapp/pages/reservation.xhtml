@@ -12,14 +12,15 @@
 -->
 
 <ui:composition template="template.xhtml">
-	<ui:define name="titre">Saisie reservation</ui:define>
-	<ui:define name="titre body">Saisie reservation</ui:define>
+	<ui:define name="titre">#{msg['titre.saisie.reservation']}</ui:define>
+	<ui:define name="titre body">#{msg['titre.saisie.reservation']}</ui:define>
 	<ui:define name="body">
 		<h:form>
 
 			<table>
 				<tr>
-					<td><h:outputLabel for="voiture" value="voiture : " /></td>
+					<td><h:outputLabel for="voiture"
+							value="#{msg['reservation.voiture']} : " /></td>
 					<td><h:selectOneMenu
 							value="#{reservationMB.reservation.voiture.id}" required="true">
 							<f:selectItems value="#{voitureMB.selectVoiture}" />
@@ -27,7 +28,8 @@
 				</tr>
 
 				<tr>
-					<td><h:outputLabel for="client" value="client : " /></td>
+					<td><h:outputLabel for="client"
+							value="#{msg['reservation.client']} : " /></td>
 					<td><h:selectOneMenu
 							value="#{reservationMB.reservation.client.id}" required="true">
 							<f:selectItems value="#{clientMB.selectClient}" />
@@ -36,7 +38,7 @@
 
 				<tr>
 					<td><h:outputLabel for="dateReservation"
-							value="date de Reservation : " /></td>
+							value="#{msg['reservation.date.reservation']} : " /></td>
 					<td><h:inputText id="dateReservation"
 							value="#{reservationMB.reservation.dateReservation}"
 							required="true"
@@ -47,7 +49,7 @@
 				</tr>
 				<tr>
 					<td><h:outputLabel for="datePriseVehicule"
-							value="date de Prise de Vehicule : " /></td>
+							value="#{msg['reservation.date.prisevehicule']} : " /></td>
 					<td><h:inputText id="datePriseVehicule"
 							value="#{reservationMB.reservation.datePriseVehicule}"
 							required="true"
@@ -57,7 +59,8 @@
 						</h:inputText></td>
 				</tr>
 				<tr>
-					<td><h:outputLabel for="dateRetour" value="date de Retour : " /></td>
+					<td><h:outputLabel for="dateRetour"
+							value="#{msg['reservation.date.retour']} : " /></td>
 					<td><h:inputText id="dateRetour"
 							value="#{reservationMB.reservation.dateRetour}" required="true"
 							validator="#{reservationMB.validateDateRetour}">
@@ -70,15 +73,17 @@
 
 				<tr>
 					<!-- Action est d'appeler la methode addUser de l'objet userMB -->
-					<td><h:commandButton id="addReservation" value="Add"
+					<td><h:commandButton id="addReservation"
+							value="#{msg['bouton.ajout']}"
 							action="#{reservationMB.addReservation}" ajax="false" /></td>
-					<td><h:commandButton id="reset" value="Reset"
-							action="#{reservationMB.reset}" ajax="false" immediate="true" /></td>
+					<td><h:commandButton id="reset"
+							value="#{msg['bouton.efface']}" action="#{reservationMB.reset}"
+							ajax="false" immediate="true" /></td>
 					<!-- Action est d'appeler directement à la page avec immediate="true" 
 				sans passer par la validation du formulaire -->
 					<td><h:commandButton id="ListReservations"
-							value="Liste Reservations" action="reservations" ajax="false"
-							immediate="true" /></td>
+							value="#{msg['liste.reservation']}" action="reservations"
+							ajax="false" immediate="true" /></td>
 				</tr>
 			</table>
 		</h:form>

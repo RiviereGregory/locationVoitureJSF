@@ -5,6 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
+	<f:view locale="en" />
 	<title><ui:insert name="titre" /></title>
 
 	<style type="text/css">
@@ -16,14 +17,15 @@
 	<ui:insert name="titre body" />
 	<h:form>
 		<ul>
-			<li><h:commandLink action="client" value="Ajouter client"></h:commandLink></li>
-			<li><h:commandLink action="clients" value="Liste client"></h:commandLink></li>
-			<li><h:commandLink action="voiture" value="Ajouter voiture"></h:commandLink></li>
-			<li><h:commandLink action="voitures" value="Liste voiture"></h:commandLink></li>
+			<li><h:commandLink action="client"
+					value="#{msg['ajout.client']}"></h:commandLink></li>
+			<li><h:commandLink action="clients" value="#{msg['liste.client']}"></h:commandLink></li>
+			<li><h:commandLink action="voiture" value="#{msg['ajout.voiture']}"></h:commandLink></li>
+			<li><h:commandLink action="voitures" value="#{msg['liste.voiture']}"></h:commandLink></li>
 			<li><h:commandLink action="reservation"
-					value="Ajouter reservation"></h:commandLink></li>
+					value="#{msg['ajout.reservation']}"></h:commandLink></li>
 			<li><h:commandLink action="reservations"
-					value="Liste reservation"></h:commandLink></li>
+					value="#{msg['liste.reservation']}"></h:commandLink></li>
 		</ul>
 	</h:form>
 	<br />
