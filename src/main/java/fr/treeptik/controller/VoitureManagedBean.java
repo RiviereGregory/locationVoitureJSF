@@ -1,13 +1,20 @@
 package fr.treeptik.controller;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.validator.ValidatorException;
 
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Voiture;
@@ -28,6 +35,29 @@ public class VoitureManagedBean implements Serializable {
 	private List<SelectItem> selectVoiture = new ArrayList<>();
 
 	private Voiture voiture = new Voiture();
+
+	private Date dateMiseEnCirculation;
+
+	// Les Validators
+	public void validateDateMiseEnCirculation(FacesContext context, UIComponent component,
+			Object date) throws ValidatorException {
+		dateMiseEnCirculation = (Date) date;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String stringCourant = dateFormat.format(new Date());
+		Date dateCourante = null;
+		try {
+			dateCourante = dateFormat.parse(stringCourant);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		if (dateCourante.before(dateMiseEnCirculation)) {
+			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"date de mise en circulation vous devez saisir une date passé",
+					"vous devez saisir une date passé"));
+		}
+
+	}
 
 	// Methode appeler depuis la page avec un bouton plus de notion de GET ou POST
 	public String addVoiture() throws Exception {

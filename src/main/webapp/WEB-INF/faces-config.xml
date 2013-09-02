@@ -13,6 +13,19 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
         <el-resolver>        
             org.springframework.web.jsf.el.SpringBeanFacesELResolver            
         </el-resolver>
+        
+         <locale-config>
+     	        <default-locale>fr</default-locale>
+     	   </locale-config>
+	   <resource-bundle>
+		<base-name>messages</base-name>
+		<var>msg</var>
+	   </resource-bundle>
+        
+        
     </application>
+    
+   
+
       
 </faces-config>

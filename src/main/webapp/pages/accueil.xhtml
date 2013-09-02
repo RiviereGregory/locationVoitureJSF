@@ -1,36 +1,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
-<h:head>
+<!-- <h:head>
 	<title>Welcome to JSF_Spring_Hibernate_Project</title>
 </h:head>
 <h:body>
-	<h:form>
-		<table>
-			<tr>
-				<td><h:commandLink action="client" value="Ajouter client"></h:commandLink></td>
-			</tr>
-			<tr>
-				<td><h:commandLink action="clients" value="Liste client"></h:commandLink></td>
-			</tr>
-			<tr>
-				<td><h:commandLink action="voiture" value="Ajouter voiture"></h:commandLink></td>
-			</tr>
-			<tr>
-				<td><h:commandLink action="voitures" value="Liste voiture"></h:commandLink></td>
-			</tr>
-			<tr>
-				<td><h:commandLink action="reservation"
-						value="Ajouter reservation"></h:commandLink></td>
-			</tr>
-			<tr>
-				<td><h:commandLink action="reservations"
-						value="Liste reservation"></h:commandLink></td>
-			</tr>
-		</table>
-	</h:form>
-</h:body>
+-->
+<ui:composition template="template.xhtml">
+	<ui:define name="titre">Index</ui:define>
+	<ui:define name="titre body">Index</ui:define>
+	<ui:define name="body">
+		<!-- 		<h:form> -->
+		<!-- 			<table> -->
+		<!-- 				<tr> -->
+		<!-- 					<td><h:commandLink action="client" value="Ajouter client"></h:commandLink></td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<td><h:commandLink action="clients" value="Liste client"></h:commandLink></td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<td><h:commandLink action="voiture" value="Ajouter voiture"></h:commandLink></td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<td><h:commandLink action="voitures" value="Liste voiture"></h:commandLink></td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<td><h:commandLink action="reservation" -->
+		<!-- 							value="Ajouter reservation"></h:commandLink></td> -->
+		<!-- 				</tr> -->
+		<!-- 				<tr> -->
+		<!-- 					<td><h:commandLink action="reservations" -->
+		<!-- 							value="Liste reservation"></h:commandLink></td> -->
+		<!-- 				</tr> -->
+		<!-- 			</table> -->
+		<!-- 		</h:form> -->
+
+	</ui:define>
+</ui:composition>
+<!-- </h:body> -->
 </html>

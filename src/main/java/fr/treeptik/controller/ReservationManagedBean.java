@@ -32,6 +32,7 @@ public class ReservationManagedBean implements Serializable {
 
 	private Reservation reservation;
 
+	// Variable pour recupérer les dates des champs des pages xhtml
 	private Date dateReservation;
 	private Date datePriseVehicule;
 	private Date dateRetour;

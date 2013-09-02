@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title><ui:insert name="titre" /></title>
+
+	<style type="text/css">
+</style>
+</h:head>
+
+<h:body>
+
+	<ui:insert name="titre body" />
+	<h:form>
+		<ul>
+			<li><h:commandLink action="client" value="Ajouter client"></h:commandLink></li>
+			<li><h:commandLink action="clients" value="Liste client"></h:commandLink></li>
+			<li><h:commandLink action="voiture" value="Ajouter voiture"></h:commandLink></li>
+			<li><h:commandLink action="voitures" value="Liste voiture"></h:commandLink></li>
+			<li><h:commandLink action="reservation"
+					value="Ajouter reservation"></h:commandLink></li>
+			<li><h:commandLink action="reservations"
+					value="Liste reservation"></h:commandLink></li>
+		</ul>
+	</h:form>
+	<br />
+	<div>
+		<ui:insert name="body" />
+	</div>
+
+</h:body>
+</html>

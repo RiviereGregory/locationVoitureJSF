@@ -1,86 +1,92 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
-<h:head>
+<!--  <h:head>
 	<title>List reservation</title>
 </h:head>
-<h:body>
+<h:body>-->
 
-	<h:form>
-		<h:outputText value="Reservations : "></h:outputText>
-		<!-- équivalent du c:foreach h:dataTable-->
-		<!-- appele directement le clientMB.clientList qui appele le getClientList -->
-		<h:dataTable var="reservation" value="#{reservationMB.reservations}"
-			style="width: 10%">
-			<h:column>
-				<!-- equivalent de th en html -->
-				<f:facet name="header">
-					<h:outputText value="ID" />
-				</f:facet>
-				<!-- les valeurs mise dessous -->
-				<h:outputText value="#{reservation.id}" />
-			</h:column>
-			<h:column>
-				<!-- equivalent de th en html -->
-				<f:facet name="header">
-					<h:outputText value="ID voiture" />
-				</f:facet>
-				<!-- les valeurs mise dessous -->
-				<h:outputText value="#{reservation.voiture.id}" />
-			</h:column>
-			<h:column>
-				<!-- equivalent de th en html -->
-				<f:facet name="header">
-					<h:outputText value="ID client" />
-				</f:facet>
-				<!-- les valeurs mise dessous -->
-				<h:outputText value="#{reservation.client.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Date de reservation" />
-				</f:facet>
-				<h:outputText value="#{reservation.dateReservation}">
-					<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy"
-						timeZone="Europe/Paris" />
-				</h:outputText>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Date de Prise vehicule" />
-				</f:facet>
-				<h:outputText value="#{reservation.datePriseVehicule}">
-					<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy"
-						timeZone="Europe/Paris" />
-				</h:outputText>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Date de Retour" />
-				</f:facet>
-				<h:outputText value="#{reservation.dateRetour}">
-					<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
-					<f:convertDateTime type="date" pattern="dd/MM/yyyy"
-						timeZone="Europe/Paris" />
-				</h:outputText>
-			</h:column>
+<ui:composition template="template.xhtml">
+	<ui:define name="titre">List reservation</ui:define>
+	<ui:define name="titre body">List reservation</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:outputText value="Reservations : "></h:outputText>
+			<!-- équivalent du c:foreach h:dataTable-->
+			<!-- appele directement le clientMB.clientList qui appele le getClientList -->
+			<h:dataTable var="reservation" value="#{reservationMB.reservations}"
+				style="width: 10%">
+				<h:column>
+					<!-- equivalent de th en html -->
+					<f:facet name="header">
+						<h:outputText value="ID" />
+					</f:facet>
+					<!-- les valeurs mise dessous -->
+					<h:outputText value="#{reservation.id}" />
+				</h:column>
+				<h:column>
+					<!-- equivalent de th en html -->
+					<f:facet name="header">
+						<h:outputText value="ID voiture" />
+					</f:facet>
+					<!-- les valeurs mise dessous -->
+					<h:outputText value="#{reservation.voiture.id}" />
+				</h:column>
+				<h:column>
+					<!-- equivalent de th en html -->
+					<f:facet name="header">
+						<h:outputText value="ID client" />
+					</f:facet>
+					<!-- les valeurs mise dessous -->
+					<h:outputText value="#{reservation.client.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Date de reservation" />
+					</f:facet>
+					<h:outputText value="#{reservation.dateReservation}">
+						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+							timeZone="Europe/Paris" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Date de Prise vehicule" />
+					</f:facet>
+					<h:outputText value="#{reservation.datePriseVehicule}">
+						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+							timeZone="Europe/Paris" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Date de Retour" />
+					</f:facet>
+					<h:outputText value="#{reservation.dateRetour}">
+						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+							timeZone="Europe/Paris" />
+					</h:outputText>
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="ACTION" />
-				</f:facet>
-				<h:commandLink action="#{reservationMB.deleteReservation}"
-					value="Supprimer"></h:commandLink>
-			</h:column>
-		</h:dataTable>
-		<h:commandButton id="Index" value="Index" action="accueil"
-			ajax="false" immediate="true" />
-	</h:form>
-
-</h:body>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="ACTION" />
+					</f:facet>
+					<h:commandLink action="#{reservationMB.deleteReservation}"
+						value="Supprimer"></h:commandLink>
+				</h:column>
+			</h:dataTable>
+			<h:commandButton id="Index" value="Index" action="accueil"
+				ajax="false" immediate="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+<!-- </h:body> -->
 </html>

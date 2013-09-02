@@ -1,83 +1,89 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
-<h:head>
+<!-- <h:head>
 	<title>Ajout reservation</title>
 </h:head>
 <h:body>
+-->
 
-	<h:form>
+<ui:composition template="template.xhtml">
+	<ui:define name="titre">Saisie reservation</ui:define>
+	<ui:define name="titre body">Saisie reservation</ui:define>
+	<ui:define name="body">
+		<h:form>
 
-		<table>
+			<table>
+				<tr>
+					<td><h:outputLabel for="voiture" value="voiture : " /></td>
+					<td><h:selectOneMenu
+							value="#{reservationMB.reservation.voiture.id}" required="true">
+							<f:selectItems value="#{voitureMB.selectVoiture}" />
+						</h:selectOneMenu></td>
+				</tr>
 
-			<tr>
-				<td><h:outputLabel for="voiture" value="voiture : " /></td>
-				<td><h:selectOneMenu
-						value="#{reservationMB.reservation.voiture.id}" required="true">
-						<f:selectItems value="#{voitureMB.selectVoiture}" />
-					</h:selectOneMenu></td>
-			</tr>
+				<tr>
+					<td><h:outputLabel for="client" value="client : " /></td>
+					<td><h:selectOneMenu
+							value="#{reservationMB.reservation.client.id}" required="true">
+							<f:selectItems value="#{clientMB.selectClient}" />
+						</h:selectOneMenu></td>
+				</tr>
 
-			<tr>
-				<td><h:outputLabel for="client" value="client : " /></td>
-				<td><h:selectOneMenu
-						value="#{reservationMB.reservation.client.id}" required="true">
-						<f:selectItems value="#{clientMB.selectClient}" />
-					</h:selectOneMenu></td>
-			</tr>
-
-			<tr>
-				<td><h:outputLabel for="dateReservation"
-						value="date de Reservation : " /></td>
-				<td><h:inputText id="dateReservation"
-						value="#{reservationMB.reservation.dateReservation}"
-						required="true"
-						validator="#{reservationMB.validateDateReservation}">
-						<!-- Format de la date que l'on veut passer -->
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:inputText></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="datePriseVehicule"
-						value="date de Prise de Vehicule : " /></td>
-				<td><h:inputText id="datePriseVehicule"
-						value="#{reservationMB.reservation.datePriseVehicule}"
-						required="true"
-						validator="#{reservationMB.validateDatePriseVehicule}">
-						<!-- Format de la date que l'on veut passer -->
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:inputText></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="dateRetour" value="date de Retour : " /></td>
-				<td><h:inputText id="dateRetour"
-						value="#{reservationMB.reservation.dateRetour}" required="true"
-						validator="#{reservationMB.validateDateRetour}">
-						<!-- Format de la date que l'on veut passer -->
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:inputText></td>
-			</tr>
-
+				<tr>
+					<td><h:outputLabel for="dateReservation"
+							value="date de Reservation : " /></td>
+					<td><h:inputText id="dateReservation"
+							value="#{reservationMB.reservation.dateReservation}"
+							required="true"
+							validator="#{reservationMB.validateDateReservation}">
+							<!-- Format de la date que l'on veut passer -->
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="datePriseVehicule"
+							value="date de Prise de Vehicule : " /></td>
+					<td><h:inputText id="datePriseVehicule"
+							value="#{reservationMB.reservation.datePriseVehicule}"
+							required="true"
+							validator="#{reservationMB.validateDatePriseVehicule}">
+							<!-- Format de la date que l'on veut passer -->
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="dateRetour" value="date de Retour : " /></td>
+					<td><h:inputText id="dateRetour"
+							value="#{reservationMB.reservation.dateRetour}" required="true"
+							validator="#{reservationMB.validateDateRetour}">
+							<!-- Format de la date que l'on veut passer -->
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:inputText></td>
+				</tr>
 
 
-			<tr>
-				<!-- Action est d'appeler la methode addUser de l'objet userMB -->
-				<td><h:commandButton id="addReservation" value="Add"
-						action="#{reservationMB.addReservation}" ajax="false" /></td>
-				<td><h:commandButton id="reset" value="Reset"
-						action="#{reservationMB.reset}" ajax="false" immediate="true" /></td>
-				<!-- Action est d'appeler directement à la page avec immediate="true" 
+
+				<tr>
+					<!-- Action est d'appeler la methode addUser de l'objet userMB -->
+					<td><h:commandButton id="addReservation" value="Add"
+							action="#{reservationMB.addReservation}" ajax="false" /></td>
+					<td><h:commandButton id="reset" value="Reset"
+							action="#{reservationMB.reset}" ajax="false" immediate="true" /></td>
+					<!-- Action est d'appeler directement à la page avec immediate="true" 
 				sans passer par la validation du formulaire -->
-				<td><h:commandButton id="ListReservations"
-						value="Liste Reservations" action="reservations" ajax="false"
-						immediate="true" /></td>
-			</tr>
-		</table>
-	</h:form>
+					<td><h:commandButton id="ListReservations"
+							value="Liste Reservations" action="reservations" ajax="false"
+							immediate="true" /></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
 
-
-</h:body>
+<!-- </h:body> -->
 </html>

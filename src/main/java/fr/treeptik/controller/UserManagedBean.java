@@ -38,20 +38,23 @@ public class UserManagedBean implements Serializable {
 		return "list-users";
 	}
 
-	public void deleteUser() throws Exception {
+	public String deleteUser() throws Exception {
 		// On recupère l'id de l'utisateur que l'on a selectionner dans le tableau il faut utiliser
 		// ListDataModel
 		user = listDataModel.getRowData();
 
 		userService.deleteUser(user.getId());
+
+		return "list-users";
 	}
 
 	public String listUsers() {
 		return "list-users";
 	}
 
-	public void reset() {
+	public String reset() {
 		this.setUser(new User());
+		return "index";
 	}
 
 	public ListDataModel<User> getUserList() throws Exception {

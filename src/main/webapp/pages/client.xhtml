@@ -1,49 +1,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
-<h:head>
+<!-- <h:head>
 	<title>Welcome to JSF_Spring_Hibernate_Project</title>
 </h:head>
 <h:body>
+-->
 
-	<h:form>
+<ui:composition template="template.xhtml">
+	<ui:define name="titre">saisie client</ui:define>
+	<ui:define name="titre body">saisie client</ui:define>
+	<ui:define name="body">
+		<h:form>
 
-		<table>
+			<table>
 
-			<tr>
-				<!-- label pour afficher le nom -->
-				<td><h:outputLabel for="name" value="Nom : " /></td>
-				<td><h:inputText id="name" value="#{clientMB.client.nom}"
-						required="true">
-						<f:validateLength minimum="2" />
-					</h:inputText></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="surname" value="Prenom : " /></td>
-				<td><h:inputText id="surname" value="#{clientMB.client.prenom}"
-						required="true">
-						<f:validateLength minimum="3" />
-					</h:inputText></td>
-			</tr>
-			<tr>
-				<!-- Action est d'appeler la methode addUser de l'objet userMB -->
-				<td><h:commandButton id="addClient" value="Add"
-						action="#{clientMB.addClient}" ajax="false" /></td>
-				<!-- Action est d'appeler la methode addUser de l'objet userMB 
+				<tr>
+					<!-- label pour afficher le nom -->
+					<td><h:outputLabel for="
+	name" value="Nom : " /></td>
+					<td><h:inputText id="name" value="#{clientMB.client.nom}"
+							required="true">
+							<f:validateLength minimum="2" />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="surname" value="Prenom : " /></td>
+					<td><h:inputText id="surname"
+							value="#{clientMB.client.prenom}" required="true">
+							<f:validateLength minimum="3" />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<!-- Action est d'appeler la methode addUser de l'objet userMB -->
+					<td><h:commandButton id="addClient" value="Add"
+							action="#{clientMB.addClient}" ajax="false" /></td>
+					<!-- Action est d'appeler la methode addUser de l'objet userMB 
 				avec immediate="true" sans passer par la validation du formulaire  -->
-				<td><h:commandButton id="reset" value="Reset"
-						action="#{clientMB.reset}" ajax="false" immediate="true" /></td>
-				<!-- Action est d'appeler directement à la page avec immediate="true" 
+					<td><h:commandButton id="reset" value="Reset"
+							action="#{clientMB.reset}" ajax="false" immediate="true" /></td>
+					<!-- Action est d'appeler directement à la page avec immediate="true" 
 				sans passer par la validation du formulaire -->
-				<td><h:commandButton id="ListClients" value="Liste Clients"
-						action="clients" ajax="false" immediate="true" /></td>
-			</tr>
-		</table>
-	</h:form>
+					<td><h:commandButton id="ListClients" value="Liste Clients"
+							action="clients" ajax="false" immediate="true" /></td>
+				</tr>
+			</table>
+		</h:form>
 
-
-</h:body>
+	</ui:define>
+</ui:composition>
+<!-- </h:body> -->
 </html>
