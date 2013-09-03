@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +20,7 @@ import javax.faces.validator.ValidatorException;
 
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Voiture;
+import fr.treeptik.service.ReservationService;
 import fr.treeptik.service.VoitureService;
 
 @ManagedBean(name = "voitureMB", eager = true)
@@ -31,6 +33,8 @@ public class VoitureManagedBean implements Serializable {
 	// Injection du service dans les pages à la place du ${} on a #{}
 	@ManagedProperty("#{voitureService}")
 	private VoitureService voitureService;
+	@ManagedProperty("#{reservationService}")
+	private ReservationService reservationService;
 
 	private ListDataModel<Voiture> voitures = new ListDataModel<>();
 
@@ -55,9 +59,10 @@ public class VoitureManagedBean implements Serializable {
 		}
 
 		if (dateCourante.before(dateMiseEnCirculation)) {
-			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"date de mise en circulation vous devez saisir une date passé",
-					"vous devez saisir une date passé"));
+			// Internationalisation des messages d'erreur
+			ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+					.getLocale());
+			throw new ValidatorException(new FacesMessage(bundle.getString("erreur.voiture.date")));
 		}
 
 	}
@@ -91,7 +96,18 @@ public class VoitureManagedBean implements Serializable {
 		// ListDataModel
 		voiture = voitures.getRowData();
 
-		voitureService.removeById(voiture.getId());
+		if (getReservationService().findByVoiture(voiture.getId()).isEmpty()) {
+			voitureService.removeById(voiture.getId());
+		} else {
+			FacesContext context = FacesContext.getCurrentInstance();
+
+			// Internationalisation des messages d'erreur
+			ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+					.getLocale());
+
+			context.addMessage(null,
+					new FacesMessage(bundle.getString("erreur.reservation.voiture")));
+		}
 
 		// On met un return pour ne pas avoir d'erreur dans la page xhtml car action attent un
 		// string pas un void
@@ -151,6 +167,14 @@ public class VoitureManagedBean implements Serializable {
 
 	public void setSelectVoiture(List<SelectItem> selectVoiture) {
 		this.selectVoiture = selectVoiture;
+	}
+
+	public ReservationService getReservationService() {
+		return reservationService;
+	}
+
+	public void setReservationService(ReservationService reservationService) {
+		this.reservationService = reservationService;
 	}
 
 }

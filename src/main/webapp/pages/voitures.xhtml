@@ -18,6 +18,8 @@
 
 		<h:form>
 
+			<h:messages/>
+
 			<p:dataTable id="datatable" var="voiture"
 				value="#{voitureMB.voitures}" style="width: 10%">
 				<p:column sortBy="#{voiture.id}" headerText="#{msg['voiture.id']}">

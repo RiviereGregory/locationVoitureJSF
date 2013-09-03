@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -68,9 +69,12 @@ public class ReservationManagedBean implements Serializable {
 		}
 
 		if (dateCourante.after(dateReservation) && !dateCourante.equals(dateReservation)) {
-			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"date reservation vous devez saisir une date future",
-					"vous devez saisir une date future"));
+			// Internationalisation des messages d'erreur
+			ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+					.getLocale());
+
+			throw new ValidatorException(new FacesMessage(
+					bundle.getString("erreur.reservation.date.reservation")));
 		}
 
 	}
@@ -87,17 +91,19 @@ public class ReservationManagedBean implements Serializable {
 			e.printStackTrace();
 		}
 
+		// Internationalisation des messages d'erreur
+		ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+				.getLocale());
+
 		if (dateCourante.after(datePriseVehicule) && !dateCourante.equals(datePriseVehicule)) {
-			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"date prise vehicule vous devez saisir une date future",
-					"vous devez saisir une date future"));
+			throw new ValidatorException(new FacesMessage(
+					bundle.getString("erreur.reservation.date.prisevoiture")));
 		}
 		if (datePriseVehicule.equals(dateReservation)) {
 
 		} else if (datePriseVehicule.before(dateReservation)) {
-			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"vous devez saisir une date après la date de réservation",
-					"vous devez saisir une date après la date de réservation"));
+			throw new ValidatorException(new FacesMessage(
+					bundle.getString("erreur.reservation.date.prisevoiture.after")));
 		}
 	}
 
@@ -112,19 +118,19 @@ public class ReservationManagedBean implements Serializable {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
+		// Internationalisation des messages d'erreur
+		ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+				.getLocale());
 		if (dateCourante.after(dateRetour) && !dateCourante.equals(dateRetour)) {
-			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"date retour vous devez saisir une date future",
-					"vous devez saisir une date future"));
+			throw new ValidatorException(new FacesMessage(
+					bundle.getString("erreur.reservation.date.retour")));
 		}
 
 		if (dateRetour.equals(datePriseVehicule)) {
 
 		} else if (dateRetour.before(datePriseVehicule)) {
-			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"vous devez saisir une date après la date de prise de vehicule",
-					"vous devez saisir une date après la date de prise de vehicule"));
+			throw new ValidatorException(new FacesMessage(
+					bundle.getString("erreur.reservation.date.retour.after")));
 		}
 	}
 
