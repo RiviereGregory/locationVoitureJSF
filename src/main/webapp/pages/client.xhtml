@@ -44,17 +44,17 @@
 					<!-- Action est d'appeler la methode addUser de l'objet userMB -->
 					<td><h:commandButton id="addClient"
 							value="#{msg['bouton.ajout']}" action="#{clientMB.addClient}"
-							ajax="false" /></td>
+							ajax="false" styleClass="btn btn-success"/></td>
 					<!-- Action est d'appeler la methode addUser de l'objet userMB 
 				avec immediate="true" sans passer par la validation du formulaire  -->
 					<td><h:commandButton id="reset"
 							value="#{msg['bouton.efface']}" action="#{clientMB.reset}"
-							ajax="false" immediate="true" /></td>
+							ajax="false" immediate="true" styleClass="btn btn-danger"/></td>
 					<!-- Action est d'appeler directement à la page avec immediate="true" 
 				sans passer par la validation du formulaire -->
 					<td><h:commandButton id="ListClients"
-							value="#{msg['liste.client']}" action="clients" ajax="false"
-							immediate="true" /></td>
+							value="#{msg['liste.client']}" action="#{clientMB.initListClient}" ajax="false"
+							immediate="true" styleClass="btn btn-default" /></td>
 				</tr>
 			</table>
 		</h:form>

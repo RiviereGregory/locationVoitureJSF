@@ -19,7 +19,7 @@
 
 		<h:form>
 			<p:dataTable id="dataTable" var="client" value="#{clientMB.clients}"
-				style="width: 20%">
+				style="width: 100%">
 
 				<p:column sortBy="#{client.id}" headerText="#{msg['client.id']}">
 					<h:outputText value="#{client.id}" />
@@ -39,7 +39,8 @@
 				</p:column>
 			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"
-				action="accueil" ajax="false" immediate="true" />
+				action="accueil" ajax="false" immediate="true"
+				styleClass="btn btn-default" />
 		</h:form>
 
 	</ui:define>

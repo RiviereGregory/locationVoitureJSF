@@ -17,7 +17,7 @@
 
 		<h:form>
 			<p:dataTable id="datatable" var="reservation"
-				value="#{reservationMB.reservations}" style="width: 10%">
+				value="#{reservationMB.reservations}" style="width: 100%">
 				<p:column sortBy="#{reservation.id}"
 					headerText="#{msg['reservation.id']}">
 					<h:outputText value="#{reservation.id}" />
@@ -64,7 +64,8 @@
 				</p:column>
 			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"
-				action="accueil" ajax="false" immediate="true" />
+				action="accueil" ajax="false" immediate="true"
+				styleClass="btn btn-default" />
 		</h:form>
 
 	</ui:define>

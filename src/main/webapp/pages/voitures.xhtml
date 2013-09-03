@@ -18,10 +18,10 @@
 
 		<h:form>
 
-			<h:messages/>
+			<h:messages />
 
 			<p:dataTable id="datatable" var="voiture"
-				value="#{voitureMB.voitures}" style="width: 10%">
+				value="#{voitureMB.voitures}" style="width: 100%">
 				<p:column sortBy="#{voiture.id}" headerText="#{msg['voiture.id']}">
 					<h:outputText value="#{voiture.id}" />
 				</p:column>
@@ -49,7 +49,8 @@
 				</p:column>
 			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"
-				action="accueil" ajax="false" immediate="true" />
+				action="accueil" ajax="false" immediate="true"
+				styleClass="btn btn-default" />
 		</h:form>
 
 	</ui:define>

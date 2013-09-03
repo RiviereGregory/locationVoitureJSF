@@ -39,7 +39,7 @@
 							value="#{voitureMB.voiture.modele}" required="true"
 							label="#{msg['voiture.modele']}">
 
-							<f:validateLength minimum="3" />
+							<f:validateLength minimum="1" />
 						</h:inputText> <h:message for="modele" /></td>
 				</tr>
 				<tr>
@@ -59,17 +59,17 @@
 					<!-- Action est d'appeler la methode addUser de l'objet userMB -->
 					<td><h:commandButton id="addVoiture"
 							value="#{msg['bouton.ajout']}" action="#{voitureMB.addVoiture}"
-							ajax="false" /></td>
+							ajax="false" styleClass="btn btn-success" /></td>
 					<!-- Action est d'appeler la methode addUser de l'objet userMB 
 				avec immediate="true" sans passer par la validation du formulaire  -->
 					<td><h:commandButton id="reset"
 							value="#{msg['bouton.efface']}" action="#{voitureMB.reset}"
-							ajax="false" immediate="true" /></td>
+							ajax="false" immediate="true" styleClass="btn btn-danger" /></td>
 					<!-- Action est d'appeler directement à la page avec immediate="true" 
 				sans passer par la validation du formulaire -->
 					<td><h:commandButton id="ListVoitures"
-							value="#{msg['liste.voiture']}" action="voitures" ajax="false"
-							immediate="true" /></td>
+							value="#{msg['liste.voiture']}" action="#{voitureMB.initListVoiture}" ajax="false"
+							immediate="true" styleClass="btn btn-default" /></td>
 				</tr>
 			</table>
 		</h:form>

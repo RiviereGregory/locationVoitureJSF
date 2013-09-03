@@ -31,53 +31,54 @@
 	<h:body>
 
 		<div class="container">
-			<div class="page-header">
-				<h1>
-					<ui:insert name="titre body" />
-				</h1>
-
-
-				<h:form>
-					<div class="span2">
-						<table>
-							<tr>
-								<td><h:commandLink action="#{lMB.activerFR}"
-										immediate="true">
-										<h:graphicImage value="/images/fr.gif" style="border: 0px"
-											height="15" width="20" />
-									</h:commandLink></td>
-								<td><h:commandLink action="#{lMB.activerEN}"
-										immediate="true">
-										<h:graphicImage value="/images/en.gif" style="border: 0px"
-											height="15" width="20" />
-									</h:commandLink></td>
-								<td width="100%"></td>
-							</tr>
-						</table>
-					</div>
-					<div class="span6" align="center">
-						<!-- le styleClass permet d'utiliser le style de bootstrap -->
-						<h:commandLink action="client" value="#{msg['ajout.client']}"
-							styleClass="btn btn-primary" />
-						<h:commandLink action="#{clientMB.initListClient}"
-							value="#{msg['liste.client']}" styleClass="btn btn-success" />
-						<h:commandLink action="voiture" value="#{msg['ajout.voiture']}"
-							styleClass="btn btn-info" />
-						<h:commandLink action="#{voitureMB.initListVoiture}"
-							value="#{msg['liste.voiture']}" styleClass="btn btn-warning" />
-						<h:commandLink action="reservation"
-							value="#{msg['ajout.reservation']}" styleClass="btn btn-danger" />
-						<h:commandLink action="#{reservationMB.initListReservation}"
-							value="#{msg['liste.reservation']}" styleClass="btn btn-default" />
+			<h:form>
+				<div class="navbar navbar-default">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target=".navbar-collapse">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand"><ui:insert name="titre body" /></a>
 					</div>
 
-				</h:form>
-			</div>
-			<div class="row">
-				<div class="span12">
-					<ui:insert name="body" />
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li><h:commandLink action="#{clientMB.reset}"
+									value="#{msg['ajout.client']}" /></li>
+							<li><h:commandLink action="#{clientMB.initListClient}"
+									value="#{msg['liste.client']}" /></li>
+							<li><h:commandLink action="#{voitureMB.reset}"
+									value="#{msg['ajout.voiture']}" /></li>
+							<li><h:commandLink action="#{voitureMB.initListVoiture}"
+									value="#{msg['liste.voiture']}" /></li>
+							<li><h:commandLink action="#{reservationMB.reset}"
+									value="#{msg['ajout.reservation']}" /></li>
+							<li><h:commandLink
+									action="#{reservationMB.initListReservation}"
+									value="#{msg['liste.reservation']}" /></li>
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right">
+							<li><h:commandLink action="#{lMB.activerFR}"
+									immediate="true">
+									<h:graphicImage value="/images/fr.gif" style="border: 0px"
+										height="15" width="20" />
+								</h:commandLink></li>
+							<li><h:commandLink action="#{lMB.activerEN}"
+									immediate="true">
+									<h:graphicImage value="/images/en.gif" style="border: 0px"
+										height="15" width="20" />
+								</h:commandLink></li>
+						</ul>
+					</div>
 				</div>
+			</h:form>
+
+			<div class="jumbotron">
+				<ui:insert name="body" />
 			</div>
+
 		</div>
 	</h:body>
 </f:view>

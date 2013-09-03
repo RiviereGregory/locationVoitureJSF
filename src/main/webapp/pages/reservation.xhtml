@@ -46,8 +46,7 @@
 							label="#{msg['reservation.date.reservation']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText>
-						<h:message for="dateReservation" /></td>
+						</h:inputText> <h:message for="dateReservation" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="datePriseVehicule"
@@ -59,8 +58,7 @@
 							label="#{msg['reservation.date.prisevehicule']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText>
-						<h:message for="datePriseVehicule" /></td>
+						</h:inputText> <h:message for="datePriseVehicule" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="dateRetour"
@@ -71,8 +69,7 @@
 							label="#{msg['reservation.date.retour']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText>
-						<h:message for="dateRetour" /></td>
+						</h:inputText> <h:message for="dateRetour" /></td>
 				</tr>
 
 
@@ -81,15 +78,17 @@
 					<!-- Action est d'appeler la methode addUser de l'objet userMB -->
 					<td><h:commandButton id="addReservation"
 							value="#{msg['bouton.ajout']}"
-							action="#{reservationMB.addReservation}" ajax="false" /></td>
+							action="#{reservationMB.addReservation}" ajax="false"
+							styleClass="btn btn-success" /></td>
 					<td><h:commandButton id="reset"
 							value="#{msg['bouton.efface']}" action="#{reservationMB.reset}"
-							ajax="false" immediate="true" /></td>
+							ajax="false" immediate="true" styleClass="btn btn-danger" /></td>
 					<!-- Action est d'appeler directement à la page avec immediate="true" 
 				sans passer par la validation du formulaire -->
 					<td><h:commandButton id="ListReservations"
-							value="#{msg['liste.reservation']}" action="reservations"
-							ajax="false" immediate="true" /></td>
+							value="#{msg['liste.reservation']}"
+							action="#{reservationMB.initListReservation}" ajax="false"
+							immediate="true" styleClass="btn btn-default" /></td>
 				</tr>
 			</table>
 		</h:form>
