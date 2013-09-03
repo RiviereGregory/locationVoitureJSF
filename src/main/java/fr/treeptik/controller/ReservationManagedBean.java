@@ -8,11 +8,11 @@ import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.faces.validator.ValidatorException;
-
 
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Client;
@@ -21,6 +21,8 @@ import fr.treeptik.model.Voiture;
 import fr.treeptik.service.ReservationService;
 
 @ManagedBean(name = "reservationMB", eager = true)
+// On utilise sessonScoped pour utiliser primefaces qui utilise les données en session
+@SessionScoped
 public class ReservationManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -46,6 +48,12 @@ public class ReservationManagedBean implements Serializable {
 		reservation.setVoiture(new Voiture());
 	}
 
+	// Permet d'initialiser la liste qui sera utiliser dans les datatables de primefaces
+	public String initListReservation() throws Exception {
+		reservations.setWrappedData(reservationService.findAll());
+		return "reservations";
+	}
+
 	// Les Validators
 	public void validateDateReservation(FacesContext context, UIComponent component, Object date)
 			throws ValidatorException {
@@ -59,7 +67,7 @@ public class ReservationManagedBean implements Serializable {
 			e.printStackTrace();
 		}
 
-		if (dateCourante.after(dateReservation) && !dateCourante.equals(dateReservation)) {			
+		if (dateCourante.after(dateReservation) && !dateCourante.equals(dateReservation)) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"date reservation vous devez saisir une date future",
 					"vous devez saisir une date future"));
@@ -120,6 +128,15 @@ public class ReservationManagedBean implements Serializable {
 		}
 	}
 
+	// Pour modifier une valeur du tableau
+	public String modifyReservation() throws Exception {
+		// Permet de récupérer l'id du client a modifier
+		reservation = reservations.getRowData();
+		reservationService.findById(reservation.getId());
+
+		return "reservation";
+	}
+
 	// Methode appeler depuis la page avec un bouton plus de notion de GET ou POST
 	public String addReservation() throws Exception {
 
@@ -128,8 +145,7 @@ public class ReservationManagedBean implements Serializable {
 
 		reservationService.save(reservation);
 
-		// Retourne ensuite sur la page list-user
-		return "reservations";
+		return initListReservation();
 	}
 
 	public String deleteReservation() throws Exception {
@@ -141,7 +157,7 @@ public class ReservationManagedBean implements Serializable {
 
 		// On met un return pour ne pas avoir d'erreur dans la page xhtml car action attent un
 		// string pas un void
-		return "reservations";
+		return initListReservation();
 	}
 
 	public String reset() {
@@ -173,7 +189,8 @@ public class ReservationManagedBean implements Serializable {
 	}
 
 	public ListDataModel<Reservation> getReservations() throws ServiceException {
-		reservations.setWrappedData(reservationService.findAll());
+		// Ne pas le mettre pour utiliser primeFaces
+		// reservations.setWrappedData(reservationService.findAll());
 		return reservations;
 	}
 

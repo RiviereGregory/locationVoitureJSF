@@ -14,78 +14,59 @@
 	<ui:define name="titre">#{msg['titre.liste.reservation']}</ui:define>
 	<ui:define name="titre body">#{msg['titre.liste.reservation']}</ui:define>
 	<ui:define name="body">
+
 		<h:form>
-			<h:outputText value="Reservations : "></h:outputText>
-			<!-- équivalent du c:foreach h:dataTable-->
-			<!-- appele directement le clientMB.clientList qui appele le getClientList -->
-			<h:dataTable var="reservation" value="#{reservationMB.reservations}"
-				style="width: 10%">
-				<h:column>
-					<!-- equivalent de th en html -->
-					<f:facet name="header">
-						<h:outputText value="#{msg['reservation.id']}" />
-					</f:facet>
-					<!-- les valeurs mise dessous -->
+			<p:dataTable id="datatable" var="reservation"
+				value="#{reservationMB.reservations}" style="width: 10%">
+				<p:column sortBy="#{reservation.id}"
+					headerText="#{msg['reservation.id']}">
 					<h:outputText value="#{reservation.id}" />
-				</h:column>
-				<h:column>
-					<!-- equivalent de th en html -->
-					<f:facet name="header">
-						<h:outputText value="#{msg['reservation.voiture.id']}" />
-					</f:facet>
-					<!-- les valeurs mise dessous -->
+				</p:column>
+				<p:column sortBy="#{reservation.voiture.id}"
+					headerText="#{msg['reservation.voiture.id']}">
 					<h:outputText value="#{reservation.voiture.id}" />
-				</h:column>
-				<h:column>
-					<!-- equivalent de th en html -->
-					<f:facet name="header">
-						<h:outputText value="#{msg['reservation.client.id']}" />
-					</f:facet>
-					<!-- les valeurs mise dessous -->
+				</p:column>
+				<p:column sortBy="#{reservation.client.id}"
+					headerText="#{msg['reservation.client.id']}">
 					<h:outputText value="#{reservation.client.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['reservation.date.reservation']}" />
-					</f:facet>
+				</p:column>
+				<p:column sortBy="#{reservation.dateReservation}"
+					headerText="#{msg['reservation.date.reservation']}">
 					<h:outputText value="#{reservation.dateReservation}">
 						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
 						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
 							timeZone="Europe/Paris" />
 					</h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['reservation.date.prisevehicule']}" />
-					</f:facet>
+				</p:column>
+				<p:column sortBy="#{reservation.datePriseVehicule}"
+					headerText="#{msg['reservation.date.prisevehicule']}">
 					<h:outputText value="#{reservation.datePriseVehicule}">
 						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
 						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
 							timeZone="Europe/Paris" />
 					</h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['reservation.date.retour']}" />
-					</f:facet>
+				</p:column>
+				<p:column sortBy="#{reservation.dateRetour}"
+					headerText="#{msg['reservation.date.retour']}">
 					<h:outputText value="#{reservation.dateRetour}">
 						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
 						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
 							timeZone="Europe/Paris" />
 					</h:outputText>
-				</h:column>
+				</p:column>
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['bouton.action']}" />
-					</f:facet>
+				<p:column headerText="#{msg['bouton.action']}" colspan="2">
 					<h:commandLink action="#{reservationMB.deleteReservation}"
 						value="#{msg['bouton.supp']}"></h:commandLink>
-				</h:column>
-			</h:dataTable>
+					<!-- td pour ajouter une colonne dans la colonne action qui est sur 2 colonne-->
+					<td><h:commandLink action="#{reservationMB.modifyReservation}"
+							value="#{msg['bouton.modify']}"></h:commandLink></td>
+				</p:column>
+			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"
 				action="accueil" ajax="false" immediate="true" />
 		</h:form>
+
 	</ui:define>
 </ui:composition>
 <!-- </h:body> -->

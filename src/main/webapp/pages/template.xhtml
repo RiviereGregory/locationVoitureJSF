@@ -43,7 +43,8 @@
 						value="#{msg['liste.voiture']}"></h:commandLink></li>
 				<li><h:commandLink action="reservation"
 						value="#{msg['ajout.reservation']}"></h:commandLink></li>
-				<li><h:commandLink action="reservations"
+				<li><h:commandLink
+						action="#{reservationMB.initListReservation}"
 						value="#{msg['liste.reservation']}"></h:commandLink></li>
 			</ul>
 		</h:form>
