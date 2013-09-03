@@ -11,48 +11,74 @@
 		<!-- 	<f:view locale="en" /> -->
 		<title><ui:insert name="titre" /></title>
 
-		<style type="text/css">
-</style>
+		<!-- Latest compiled and minified CSS -->
+		<link
+			href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+			rel="stylesheet" />
+
+		<!-- Optional theme -->
+
+		<link rel="stylesheet"
+			href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script
+			src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" />
+		<!--         	<style type="text/css"> -->
+		<!--         </style> -->
 	</h:head>
 
 	<h:body>
 
-		<ui:insert name="titre body" />
-		<h:form>
-			<table>
-				<tr>
-					<td><h:commandLink action="#{lMB.activerFR}" immediate="true">
-							<h:graphicImage value="/images/fr.gif" style="border: 0px"
-								height="15" width="20" />
-						</h:commandLink></td>
-					<td><h:commandLink action="#{lMB.activerEN}" immediate="true">
-							<h:graphicImage value="/images/en.gif" style="border: 0px"
-								height="15" width="20" />
-						</h:commandLink></td>
-					<td width="100%"></td>
-				</tr>
-			</table>
-			<ul>
-				<li><h:commandLink action="client"
-						value="#{msg['ajout.client']}"></h:commandLink></li>
-				<li><h:commandLink action="#{clientMB.initListClient}"
-						value="#{msg['liste.client']}"></h:commandLink></li>
-				<li><h:commandLink action="voiture"
-						value="#{msg['ajout.voiture']}"></h:commandLink></li>
-				<li><h:commandLink action="#{voitureMB.initListVoiture}"
-						value="#{msg['liste.voiture']}"></h:commandLink></li>
-				<li><h:commandLink action="reservation"
-						value="#{msg['ajout.reservation']}"></h:commandLink></li>
-				<li><h:commandLink
-						action="#{reservationMB.initListReservation}"
-						value="#{msg['liste.reservation']}"></h:commandLink></li>
-			</ul>
-		</h:form>
-		<br />
-		<div>
-			<ui:insert name="body" />
-		</div>
+		<div class="container">
+			<div class="page-header">
+				<h1>
+					<ui:insert name="titre body" />
+				</h1>
 
+
+				<h:form>
+					<div class="span2">
+						<table>
+							<tr>
+								<td><h:commandLink action="#{lMB.activerFR}"
+										immediate="true">
+										<h:graphicImage value="/images/fr.gif" style="border: 0px"
+											height="15" width="20" />
+									</h:commandLink></td>
+								<td><h:commandLink action="#{lMB.activerEN}"
+										immediate="true">
+										<h:graphicImage value="/images/en.gif" style="border: 0px"
+											height="15" width="20" />
+									</h:commandLink></td>
+								<td width="100%"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="span6" align="center">
+						<!-- le styleClass permet d'utiliser le style de bootstrap -->
+						<h:commandLink action="client" value="#{msg['ajout.client']}"
+							styleClass="btn btn-primary" />
+						<h:commandLink action="#{clientMB.initListClient}"
+							value="#{msg['liste.client']}" styleClass="btn btn-success" />
+						<h:commandLink action="voiture" value="#{msg['ajout.voiture']}"
+							styleClass="btn btn-info" />
+						<h:commandLink action="#{voitureMB.initListVoiture}"
+							value="#{msg['liste.voiture']}" styleClass="btn btn-warning" />
+						<h:commandLink action="reservation"
+							value="#{msg['ajout.reservation']}" styleClass="btn btn-danger" />
+						<h:commandLink action="#{reservationMB.initListReservation}"
+							value="#{msg['liste.reservation']}" styleClass="btn btn-default" />
+					</div>
+
+				</h:form>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<ui:insert name="body" />
+				</div>
+			</div>
+		</div>
 	</h:body>
 </f:view>
 </html>
