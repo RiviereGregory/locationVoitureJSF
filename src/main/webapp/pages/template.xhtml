@@ -32,17 +32,17 @@
 	<h:body>
 
 		<div class="container">
-			<h:form>
-				<div class="navbar navbar-default">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand"><ui:insert name="titre body" /></a>
-					</div>
+			<div class="navbar navbar-default">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-collapse">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand"><ui:insert name="titre body" /></a>
+				</div>
 
+				<h:form>
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li><a href="accueil.jsf">#{msg['titre.index']}</a></li>
@@ -74,11 +74,21 @@
 								</h:commandLink></li>
 						</ul>
 					</div>
-				</div>
-			</h:form>
+				</h:form>
+			</div>
 
 			<div class="jumbotron">
 				<ui:insert name="body" />
+			</div>
+
+			<div class="navbar navbar-default">
+				<h3>TREEPTIKCARS</h3>
+
+				<div align="center">
+					<img border="0" src="../images/treeptik.jpg" alt="treeptik"
+						width="100" height="100" class="img-rounded" />
+				</div>
+
 			</div>
 
 		</div>

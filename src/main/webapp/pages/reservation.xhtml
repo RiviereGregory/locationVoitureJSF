@@ -39,37 +39,42 @@
 				<tr>
 					<td><h:outputLabel for="dateReservation"
 							value="#{msg['reservation.date.reservation']} : " /></td>
-					<td><h:inputText id="dateReservation"
+					<td><p:inputText id="dateReservation"
 							value="#{reservationMB.reservation.dateReservation}"
 							required="true"
 							validator="#{reservationMB.validateDateReservation}"
 							label="#{msg['reservation.date.reservation']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText> <h:message for="dateReservation" /></td>
+						</p:inputText> <!-- Permet d'avoir le modele dans la case comme le placeholder -->
+						<p:watermark for="dateReservation" value="#{msg['format.date']}" />
+						<h:message for="dateReservation" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="datePriseVehicule"
 							value="#{msg['reservation.date.prisevehicule']} : " /></td>
-					<td><h:inputText id="datePriseVehicule"
+					<td><p:inputText id="datePriseVehicule"
 							value="#{reservationMB.reservation.datePriseVehicule}"
 							required="true"
 							validator="#{reservationMB.validateDatePriseVehicule}"
 							label="#{msg['reservation.date.prisevehicule']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText> <h:message for="datePriseVehicule" /></td>
+						</p:inputText> <p:watermark for="datePriseVehicule"
+							value="#{msg['format.date']}" /> <h:message
+							for="datePriseVehicule" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="dateRetour"
 							value="#{msg['reservation.date.retour']} : " /></td>
-					<td><h:inputText id="dateRetour"
+					<td><p:inputText id="dateRetour"
 							value="#{reservationMB.reservation.dateRetour}" required="true"
 							validator="#{reservationMB.validateDateRetour}"
 							label="#{msg['reservation.date.retour']}">
 							<!-- Format de la date que l'on veut passer -->
 							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText> <h:message for="dateRetour" /></td>
+						</p:inputText> <p:watermark for="dateRetour" value="#{msg['format.date']}" /> <h:message
+							for="dateRetour" /></td>
 				</tr>
 
 
