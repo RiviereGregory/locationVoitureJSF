@@ -69,6 +69,7 @@ public class VoitureManagedBean implements Serializable {
 
 	// Permet d'initialiser la liste qui sera utiliser dans les datatables de primefaces
 	public String initListVoiture() throws Exception {
+		voitures = new ListDataModel<>();
 		voitures.setWrappedData(voitureService.findAll());
 		return "voitures";
 	}
@@ -155,6 +156,7 @@ public class VoitureManagedBean implements Serializable {
 	// Permet de pour selectionner les objets dans les setlectitemmenu ou listbox
 	public List<SelectItem> getSelectVoiture() throws ServiceException {
 		List<Voiture> allVoiture = voitureService.findAll();
+		selectVoiture.clear();
 		for (Voiture voiture : allVoiture) {
 
 			selectVoiture.add(new SelectItem(voiture.getId(), voiture.getMarque() + " - "

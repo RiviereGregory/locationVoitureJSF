@@ -46,6 +46,7 @@ public class ClientManagedBean implements Serializable {
 
 	// Permet d'initialiser la liste qui sera utiliser dans les datatables de primefaces
 	public String initListClient() throws Exception {
+		clients = new ListDataModel<Client>();
 		clients.setWrappedData(clientService.findAll());
 		return "clients";
 	}
@@ -111,6 +112,7 @@ public class ClientManagedBean implements Serializable {
 	public List<SelectItem> getSelectClient() throws ServiceException {
 
 		List<Client> allClient = clientService.findAll();
+		selectClient.clear();
 		for (Client client : allClient) {
 
 			selectClient.add(new SelectItem(client.getId(), client.getNom() + " - "

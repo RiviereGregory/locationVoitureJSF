@@ -51,6 +51,7 @@ public class ReservationManagedBean implements Serializable {
 
 	// Permet d'initialiser la liste qui sera utiliser dans les datatables de primefaces
 	public String initListReservation() throws Exception {
+		reservations = new ListDataModel<>();
 		reservations.setWrappedData(reservationService.findAll());
 		return "reservations";
 	}

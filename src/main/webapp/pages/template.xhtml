@@ -46,19 +46,34 @@
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li><a href="accueil.jsf">#{msg['titre.index']}</a></li>
-							<li><h:commandLink action="#{clientMB.reset}"
-									value="#{msg['ajout.client']}" /></li>
+
+
 							<li><h:commandLink action="#{clientMB.initListClient}"
 									value="#{msg['liste.client']}" /></li>
-							<li><h:commandLink action="#{voitureMB.reset}"
-									value="#{msg['ajout.voiture']}" /></li>
-							<li><h:commandLink action="#{voitureMB.initListVoiture}"
-									value="#{msg['liste.voiture']}" /></li>
-							<li><h:commandLink action="#{reservationMB.reset}"
-									value="#{msg['ajout.reservation']}" /></li>
-							<li><h:commandLink
-									action="#{reservationMB.initListReservation}"
-									value="#{msg['liste.reservation']}" /></li>
+							<li><h:commandLink action="#{clientMB.reset}"
+									value="#{msg['ajout.client']}" /></li>
+
+							<li class="dropdown"><a href="" class="dropdown-toggle"
+								data-toggle="dropdown">#{msg['bouton.voiture']} <b
+									class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><h:commandLink action="#{voitureMB.initListVoiture}"
+											value="#{msg['liste.voiture']}" /></li>
+									<li><h:commandLink action="#{voitureMB.reset}"
+											value="#{msg['ajout.voiture']}" /></li>
+
+								</ul></li>
+							<li class="dropdown"><a href="" class="dropdown-toggle"
+								data-toggle="dropdown">#{msg['bouton.reservation']} <b
+									class="caret" /></a>
+								<ul class="dropdown-menu">
+									<li><h:commandLink
+											action="#{reservationMB.initListReservation}"
+											value="#{msg['liste.reservation']}" /></li>
+									<li><h:commandLink action="#{reservationMB.reset}"
+											value="#{msg['ajout.reservation']}" /></li>
+
+								</ul></li>
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">

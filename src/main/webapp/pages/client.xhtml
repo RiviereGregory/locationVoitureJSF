@@ -4,13 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
-<!-- <h:head>
-	<title>Welcome to JSF_Spring_Hibernate_Project</title>
-</h:head>
-<h:body>
--->
-
 <ui:composition template="template.xhtml">
 	<ui:define name="titre">#{msg['titre.saisie.client']}</ui:define>
 	<ui:define name="titre body">#{msg['titre.saisie.client']}</ui:define>
@@ -21,14 +14,11 @@
 
 				<tr>
 					<!-- label pour afficher le nom -->
-					<td><h:outputLabel for="
-	name"
-							value="#{msg['client.nom']} : " /></td>
+					<td><h:outputLabel for="name" value="#{msg['client.nom']} : " /></td>
 					<td><h:inputText id="name" value="#{clientMB.client.nom}"
 							required="true" label="#{msg['client.nom']}">
 							<f:validateLength minimum="2" />
-						</h:inputText>
-						<h:message for="name" /></td>
+						</h:inputText> <h:message for="name" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="surname"
@@ -37,29 +27,23 @@
 							value="#{clientMB.client.prenom}" required="true"
 							label="#{msg['client.prenom']}">
 							<f:validateLength minimum="3" />
-						</h:inputText>
-						<h:message for="surname" /></td>
+						</h:inputText> <h:message for="surname" /></td>
 				</tr>
 				<tr>
-					<!-- Action est d'appeler la methode addUser de l'objet userMB -->
 					<td><h:commandButton id="addClient"
 							value="#{msg['bouton.ajout']}" action="#{clientMB.addClient}"
-							ajax="false" styleClass="btn btn-success"/></td>
-					<!-- Action est d'appeler la methode addUser de l'objet userMB 
-				avec immediate="true" sans passer par la validation du formulaire  -->
+							ajax="false" styleClass="btn btn-success" /></td>
 					<td><h:commandButton id="reset"
 							value="#{msg['bouton.efface']}" action="#{clientMB.reset}"
-							ajax="false" immediate="true" styleClass="btn btn-danger"/></td>
-					<!-- Action est d'appeler directement à la page avec immediate="true" 
-				sans passer par la validation du formulaire -->
+							ajax="false" immediate="true" styleClass="btn btn-danger" /></td>
 					<td><h:commandButton id="ListClients"
-							value="#{msg['liste.client']}" action="#{clientMB.initListClient}" ajax="false"
-							immediate="true" styleClass="btn btn-default" /></td>
+							value="#{msg['liste.client']}"
+							action="#{clientMB.initListClient}" ajax="false" immediate="true"
+							styleClass="btn btn-default" /></td>
 				</tr>
 			</table>
 		</h:form>
 
 	</ui:define>
 </ui:composition>
-<!-- </h:body> -->
 </html>
