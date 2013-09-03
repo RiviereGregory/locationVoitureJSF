@@ -23,37 +23,33 @@
 					<!-- label pour afficher le nom -->
 					<td><h:outputLabel for="marque"
 							value="#{msg['voiture.marque']} : " /></td>
-					<td><h:inputText id="marque"
+					<!-- keyboard permet d'avoir un clavier virtuel -->
+					<td><p:keyboard id="marque"
 							value="#{voitureMB.voiture.marque}" required="true"
 							label="#{msg['voiture.marque']}">
-							<!-- label="#{msg['voiture.marque']}" permet de modifier l'id de l'erreur-->
-
 							<f:validateLength minimum="2" />
-						</h:inputText> <!--Permet d'afficher le message d'erreur --> <h:message
-							for="marque" /></td>
+						</p:keyboard> <h:message for="marque" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="modele"
 							value="#{msg['voiture.modele']} : " /></td>
-					<td><h:inputText id="modele"
+					<td><p:keyboard id="modele"
 							value="#{voitureMB.voiture.modele}" required="true"
 							label="#{msg['voiture.modele']}">
-
 							<f:validateLength minimum="1" />
-						</h:inputText> <h:message for="modele" /></td>
+						</p:keyboard> <h:message for="modele" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="dateMiseEnCirculation"
 							value="#{msg['voiture.date']} : " /></td>
-					<td><h:inputText id="dateMiseEnCirculation"
+					<!-- Permet d'avoir un calendrier en popup -->
+					<td><p:calendar
 							value="#{voitureMB.voiture.dateMiseEnCirculation}"
-							required="true"
+							id="dateMiseEnCirculation"
 							validator="#{voitureMB.validateDateMiseEnCirculation}"
-							label="#{msg['voiture.date']}">
-							<!-- Format de la date que l'on veut passer -->
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-
-						</h:inputText> <h:message for="dateMiseEnCirculation" /></td>
+							label="#{msg['voiture.date']}" required="true"
+							pattern="dd/MM/yyyy" locale="fr" navigator="true" /> <h:message
+							for="dateMiseEnCirculation" /></td>
 				</tr>
 				<tr>
 					<!-- Action est d'appeler la methode addUser de l'objet userMB -->
@@ -68,7 +64,8 @@
 					<!-- Action est d'appeler directement à la page avec immediate="true" 
 				sans passer par la validation du formulaire -->
 					<td><h:commandButton id="ListVoitures"
-							value="#{msg['liste.voiture']}" action="#{voitureMB.initListVoiture}" ajax="false"
+							value="#{msg['liste.voiture']}"
+							action="#{voitureMB.initListVoiture}" ajax="false"
 							immediate="true" styleClass="btn btn-default" /></td>
 				</tr>
 			</table>
