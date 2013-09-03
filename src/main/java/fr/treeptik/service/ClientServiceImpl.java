@@ -1,5 +1,6 @@
 package fr.treeptik.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import fr.treeptik.model.Client;
 // Attention ne pas l'oubli pour l'injection dans le ClientManagedBean
 @Service("clientService")
 public class ClientServiceImpl extends GenericServiceImpl<Client, Integer, ClientDAO> implements
-		ClientService {
+		ClientService, Serializable {
+	// On utilise serializable car on est en sessionScope dans le clienMB
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ClientDAO clientDAO;

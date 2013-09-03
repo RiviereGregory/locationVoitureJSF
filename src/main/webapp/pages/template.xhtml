@@ -4,50 +4,54 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<!-- 	<f:view locale="en" /> -->
-	<title><ui:insert name="titre" /></title>
+<!-- Pour pouvoir naviguer avec la locale que l'on a selectionne-->
+<f:view locale="#{lMB.locale}">
 
-	<style type="text/css">
+	<h:head>
+		<!-- 	<f:view locale="en" /> -->
+		<title><ui:insert name="titre" /></title>
+
+		<style type="text/css">
 </style>
-</h:head>
+	</h:head>
 
-<h:body>
+	<h:body>
 
-	<ui:insert name="titre body" />
-	<h:form>
-		<table>
-			<tr>
-				<td><h:commandLink action="#{lMB.activerFR}" immediate="true">
-						<h:graphicImage value="/images/fr.gif" style="border: 0px"
-							height="15" width="20" />
-					</h:commandLink></td>
-				<td><h:commandLink action="#{lMB.activerEN}" immediate="true">
-						<h:graphicImage value="/images/en.gif" style="border: 0px"
-							height="15" width="20" />
-					</h:commandLink></td>
-				<td width="100%"></td>
-			</tr>
-		</table>
-		<ul>
-			<li><h:commandLink action="client"
-					value="#{msg['ajout.client']}"></h:commandLink></li>
-			<li><h:commandLink action="clients"
-					value="#{msg['liste.client']}"></h:commandLink></li>
-			<li><h:commandLink action="voiture"
-					value="#{msg['ajout.voiture']}"></h:commandLink></li>
-			<li><h:commandLink action="voitures"
-					value="#{msg['liste.voiture']}"></h:commandLink></li>
-			<li><h:commandLink action="reservation"
-					value="#{msg['ajout.reservation']}"></h:commandLink></li>
-			<li><h:commandLink action="reservations"
-					value="#{msg['liste.reservation']}"></h:commandLink></li>
-		</ul>
-	</h:form>
-	<br />
-	<div>
-		<ui:insert name="body" />
-	</div>
+		<ui:insert name="titre body" />
+		<h:form>
+			<table>
+				<tr>
+					<td><h:commandLink action="#{lMB.activerFR}" immediate="true">
+							<h:graphicImage value="/images/fr.gif" style="border: 0px"
+								height="15" width="20" />
+						</h:commandLink></td>
+					<td><h:commandLink action="#{lMB.activerEN}" immediate="true">
+							<h:graphicImage value="/images/en.gif" style="border: 0px"
+								height="15" width="20" />
+						</h:commandLink></td>
+					<td width="100%"></td>
+				</tr>
+			</table>
+			<ul>
+				<li><h:commandLink action="client"
+						value="#{msg['ajout.client']}"></h:commandLink></li>
+				<li><h:commandLink action="#{clientMB.initListClient}"
+						value="#{msg['liste.client']}"></h:commandLink></li>
+				<li><h:commandLink action="voiture"
+						value="#{msg['ajout.voiture']}"></h:commandLink></li>
+				<li><h:commandLink action="voitures"
+						value="#{msg['liste.voiture']}"></h:commandLink></li>
+				<li><h:commandLink action="reservation"
+						value="#{msg['ajout.reservation']}"></h:commandLink></li>
+				<li><h:commandLink action="reservations"
+						value="#{msg['liste.reservation']}"></h:commandLink></li>
+			</ul>
+		</h:form>
+		<br />
+		<div>
+			<ui:insert name="body" />
+		</div>
 
-</h:body>
+	</h:body>
+</f:view>
 </html>

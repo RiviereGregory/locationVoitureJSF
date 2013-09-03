@@ -1,5 +1,6 @@
 package fr.treeptik.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,10 @@ import fr.treeptik.model.Reservation;
 
 @Service("reservationService")
 public class ReservationServiceImpl extends
-		GenericServiceImpl<Reservation, Integer, ReservationDAO> implements ReservationService {
+		GenericServiceImpl<Reservation, Integer, ReservationDAO> implements ReservationService,
+		Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ReservationDAO reservationDAO;

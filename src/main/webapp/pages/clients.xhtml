@@ -18,12 +18,12 @@
 
 
 		<h:form>
-			<p:dataTable var="client" value="#{clientMB.clients}">
+			<p:dataTable id="dataTable" var="client" value="#{clientMB.clients}">
 
-				<p:column headerText="#{msg['client.id']}">
+				<p:column sortBy="#{client.id}" headerText="#{msg['client.id']}">
 					<h:outputText value="#{client.id}" />
 				</p:column>
-				<p:column headerText="#{msg['client.nom']}">
+				<p:column sortBy="#{client.nom}" headerText="#{msg['client.nom']}">
 					<h:outputText value="#{client.nom}" />
 				</p:column>
 				<p:column headerText="#{msg['client.prenom']}">
@@ -32,6 +32,8 @@
 				<p:column headerText="#{msg['bouton.action']}">
 					<h:commandLink action="#{clientMB.deleteClient}"
 						value="#{msg['bouton.supp']}"></h:commandLink>
+					<h:commandLink action="#{clientMB.modifyClient}"
+						value="#{msg['bouton.modify']}"></h:commandLink>
 				</p:column>
 			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"

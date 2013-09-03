@@ -1,5 +1,6 @@
 package fr.treeptik.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import fr.treeptik.model.Voiture;
 
 @Service("voitureService")
 public class VoitureServiceImpl extends GenericServiceImpl<Voiture, Integer, VoitureDAO> implements
-		VoitureService {
+		VoitureService, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private VoitureDAO voitureDAO;

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
@@ -14,6 +15,8 @@ import fr.treeptik.model.Client;
 import fr.treeptik.service.ClientService;
 
 @ManagedBean(name = "clientMB")
+// On utilise sessonScoped pour utiliser primefaces qui utilise les données en session
+@SessionScoped
 public class ClientManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,12 +32,21 @@ public class ClientManagedBean implements Serializable {
 
 	private Client client = new Client();
 
+	public ClientManagedBean() {
+	}
+
 	// Methode appeler depuis la page avec un bouton plus de notion de GET ou POST
 	public String addClient() throws Exception {
 
 		clientService.save(client);
 
 		// Retourne ensuite sur la page list-user
+		return initListClient();
+	}
+
+	// Permet d'initialiser la liste qui sera utiliser dans les datatables de primefaces
+	public String initListClient() throws Exception {
+		clients.setWrappedData(clientService.findAll());
 		return "clients";
 	}
 
@@ -46,7 +58,16 @@ public class ClientManagedBean implements Serializable {
 		clientService.removeById(client.getId());
 		// On met un return pour ne pas avoir d'erreur dans la page xhtml car action attent un
 		// string pas un void
-		return "clients";
+		// On return la methode et plus la table pour primefaces
+		return initListClient();
+	}
+
+	public String modifyClient() throws Exception {
+		// Permet de récupérer l'id du client a modifier
+		client = clients.getRowData();
+		clientService.findById(client.getId());
+
+		return "client";
 	}
 
 	public String reset() {
@@ -76,8 +97,9 @@ public class ClientManagedBean implements Serializable {
 		this.clientService = clientService;
 	}
 
+	// Pour indique l'index dans un tableau
 	public ListDataModel<Client> getClients() throws ServiceException {
-		clients.setWrappedData(clientService.findAll());
+
 		return clients;
 	}
 
