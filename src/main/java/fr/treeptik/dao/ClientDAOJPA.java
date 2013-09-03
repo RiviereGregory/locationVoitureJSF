@@ -1,5 +1,6 @@
 package fr.treeptik.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -11,7 +12,9 @@ import fr.treeptik.exception.DAOException;
 import fr.treeptik.model.Client;
 
 @Repository
-public class ClientDAOJPA extends GenericDAOJPA<Client, Integer> implements ClientDAO {
+public class ClientDAOJPA extends GenericDAOJPA<Client, Integer> implements ClientDAO, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public ClientDAOJPA() {
 		super(Client.class);

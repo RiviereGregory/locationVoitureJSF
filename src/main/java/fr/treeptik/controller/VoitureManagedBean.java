@@ -10,6 +10,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
@@ -21,6 +22,8 @@ import fr.treeptik.model.Voiture;
 import fr.treeptik.service.VoitureService;
 
 @ManagedBean(name = "voitureMB", eager = true)
+// Pour utiliser Primefaces
+@SessionScoped
 public class VoitureManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -59,13 +62,28 @@ public class VoitureManagedBean implements Serializable {
 
 	}
 
+	// Permet d'initialiser la liste qui sera utiliser dans les datatables de primefaces
+	public String initListVoiture() throws Exception {
+		voitures.setWrappedData(voitureService.findAll());
+		return "voitures";
+	}
+
+	// Pour modifier une valeur du tableau
+	public String modifyVoiture() throws Exception {
+		// Permet de récupérer l'id du client a modifier
+		voiture = voitures.getRowData();
+		voitureService.findById(voiture.getId());
+
+		return "voiture";
+	}
+
 	// Methode appeler depuis la page avec un bouton plus de notion de GET ou POST
 	public String addVoiture() throws Exception {
 
 		voitureService.save(voiture);
 
 		// Retourne ensuite sur la page list-user
-		return "voitures";
+		return initListVoiture();
 	}
 
 	public String deleteVoiture() throws Exception {
@@ -77,7 +95,7 @@ public class VoitureManagedBean implements Serializable {
 
 		// On met un return pour ne pas avoir d'erreur dans la page xhtml car action attent un
 		// string pas un void
-		return "voitures";
+		return initListVoiture();
 	}
 
 	public String reset() {
@@ -109,7 +127,8 @@ public class VoitureManagedBean implements Serializable {
 	}
 
 	public ListDataModel<Voiture> getVoitures() throws ServiceException {
-		voitures.setWrappedData(voitureService.findAll());
+		// Pour utiliser le trie dans primefaces
+		// voitures.setWrappedData(voitureService.findAll());
 		return voitures;
 	}
 

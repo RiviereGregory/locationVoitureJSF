@@ -1,5 +1,6 @@
 package fr.treeptik.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -12,7 +13,9 @@ import fr.treeptik.model.Reservation;
 
 @Repository
 public class ReservationDAOJPA extends GenericDAOJPA<Reservation, Integer> implements
-		ReservationDAO {
+		ReservationDAO, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public ReservationDAOJPA() {
 		super(Reservation.class);

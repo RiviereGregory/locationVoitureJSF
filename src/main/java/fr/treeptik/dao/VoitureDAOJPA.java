@@ -1,5 +1,6 @@
 package fr.treeptik.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -11,7 +12,10 @@ import fr.treeptik.exception.DAOException;
 import fr.treeptik.model.Voiture;
 
 @Repository
-public class VoitureDAOJPA extends GenericDAOJPA<Voiture, Integer> implements VoitureDAO {
+public class VoitureDAOJPA extends GenericDAOJPA<Voiture, Integer> implements VoitureDAO,
+		Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public VoitureDAOJPA() {
 		super(Voiture.class);
