@@ -75,6 +75,9 @@
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
+							<li><h:commandLink id="logOut"
+									action="#{visiteurManagedBean.logout}"
+									value="#{msg['security.loggout']} #{visiteurManagedBean.nomUtilisateur}" /></li>
 							<li><h:commandLink action="#{lMB.activerFR}"
 									immediate="true">
 									<h:graphicImage value="/images/fr.gif" style="border: 0px"

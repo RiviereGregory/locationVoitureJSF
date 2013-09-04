@@ -6,21 +6,21 @@
 
 <h:head>
 </h:head>
-<body>
+<h:body>
 
-	<h:form action="j_security_check" method="post">
-		
-		login : <input type="text" name="j_username" />
+	<form action="j_security_check" method="post" name="loginForm">
+		<h:outputLabel for="j_username" value="Login" />
+		<h:inputText id="j_username" />
 		<br />
-		password : <input type="password" name="j_password" />
+		<h:outputLabel for="j_password" value="Mot de passe" />
+		<h:inputText id="j_password" />
 		<br />
 
-		<input type="submit" value="login" />
+		<h:commandButton id="submit" value="Login" />
 
-	</h:form>
+	</form>
 
-</body>
+</h:body>
 
 
 </html>
-
