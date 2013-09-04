@@ -8,25 +8,23 @@
 <f:view locale="#{lMB.locale}">
 
 	<h:head>
-		<!-- 	<f:view locale="en" /> -->
 		<title><ui:insert name="titre" /></title>
 
 		<!-- Latest compiled and minified CSS -->
 		<link
 			href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
-			rel="stylesheet" />
+			rel="stylesheet" type="text/css" />
 
 		<!-- Optional theme -->
 
 		<link rel="stylesheet"
-			href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
+			href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.css" />
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script
+		<!-- Script pour bootstrap -->
+		<script type="text/javascript"
 			src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" />
+		<script src="//code.jquery.com/jquery.js"></script>
 
-		<!--         	<style type="text/css"> -->
-		<!--         </style> -->
 	</h:head>
 
 	<h:body>
@@ -53,7 +51,7 @@
 							<li><h:commandLink action="#{clientMB.reset}"
 									value="#{msg['ajout.client']}" /></li>
 
-							<li class="dropdown"><a href="" class="dropdown-toggle"
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">#{msg['bouton.voiture']} <b
 									class="caret"></b></a>
 								<ul class="dropdown-menu">
@@ -63,7 +61,7 @@
 											value="#{msg['ajout.voiture']}" /></li>
 
 								</ul></li>
-							<li class="dropdown"><a href="" class="dropdown-toggle"
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">#{msg['bouton.reservation']} <b
 									class="caret" /></a>
 								<ul class="dropdown-menu">
@@ -107,6 +105,7 @@
 			</div>
 
 		</div>
+
 	</h:body>
 </f:view>
 </html>

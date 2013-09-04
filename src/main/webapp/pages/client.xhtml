@@ -15,19 +15,19 @@
 				<tr>
 					<!-- label pour afficher le nom -->
 					<td><h:outputLabel for="name" value="#{msg['client.nom']} : " /></td>
-					<td><h:inputText id="name" value="#{clientMB.client.nom}"
+					<td><p:inputText id="name" value="#{clientMB.client.nom}"
 							required="true" label="#{msg['client.nom']}">
 							<f:validateLength minimum="2" />
-						</h:inputText> <h:message for="name" /></td>
+						</p:inputText> <h:message for="name" /></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="surname"
 							value="#{msg['client.prenom']} : " /></td>
-					<td><h:inputText id="surname"
+					<td><p:inputText id="surname"
 							value="#{clientMB.client.prenom}" required="true"
 							label="#{msg['client.prenom']}">
 							<f:validateLength minimum="3" />
-						</h:inputText> <h:message for="surname" /></td>
+						</p:inputText> <h:message for="surname" /></td>
 				</tr>
 				<tr>
 					<td><h:commandButton id="addClient"
@@ -43,6 +43,7 @@
 				</tr>
 			</table>
 		</h:form>
+
 
 	</ui:define>
 </ui:composition>

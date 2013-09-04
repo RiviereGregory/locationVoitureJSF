@@ -14,10 +14,16 @@
 	<ui:define name="titre">#{msg['titre.index']}</ui:define>
 	<ui:define name="titre body">#{msg['titre.index']}</ui:define>
 	<ui:define name="body">
-		<p align="center">
-			<img src="../images/voiture.jpg" alt="voiture" class="img-circle" />
-		</p>
-
+		<!-- 		<p align="center"> -->
+		<!-- 			<img src="../images/voiture.jpg" alt="voiture" class="img-circle" /> -->
+		<!-- 		</p> -->
+		<h:form>
+			<p:imageSwitch effect="shuffle">
+				<ui:repeat value="#{imageManagedBean.images}" var="image">
+					<p:graphicImage value="/images/#{image}" />
+				</ui:repeat>
+			</p:imageSwitch>
+		</h:form>
 	</ui:define>
 </ui:composition>
 <!-- </h:body> -->
