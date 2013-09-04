@@ -4,27 +4,19 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!-- On utilise le jsf même dans les balise avec le h:head au lieu de head -->
-<!-- <h:head>
-	<title>Welcome to JSF_Spring_Hibernate_Project</title>
-</h:head>
-<h:body>
--->
 <ui:composition template="template.xhtml">
 	<ui:define name="titre">#{msg['titre.index']}</ui:define>
 	<ui:define name="titre body">#{msg['titre.index']}</ui:define>
 	<ui:define name="body">
-		<!-- 		<p align="center"> -->
-		<!-- 			<img src="../images/voiture.jpg" alt="voiture" class="img-circle" /> -->
-		<!-- 		</p> -->
 		<h:form>
-			<p:imageSwitch effect="shuffle">
+			<p:imageSwitch effect="fade" slideshowAuto="true">
 				<ui:repeat value="#{imageManagedBean.images}" var="image">
-					<p:graphicImage value="/images/#{image}" />
+
+					<p:graphicImage value="/images/#{image}" width="400" />
+
 				</ui:repeat>
 			</p:imageSwitch>
 		</h:form>
 	</ui:define>
 </ui:composition>
-<!-- </h:body> -->
 </html>
