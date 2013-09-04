@@ -42,4 +42,48 @@
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
   
+  
+  <security-constraint>
+ 	
+ 
+ 	<web-resource-collection>
+ 		<web-resource-name>AllUser</web-resource-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</web-resource-collection>
+ 	<auth-constraint>
+ 		<role-name>ROLE_USER</role-name>
+ 		<role-name>ROLE_ADMIN</role-name>
+ 	</auth-constraint>
+ 	
+ </security-constraint>
+
+<!-- Il faut config le server.xml de tomcat avec : -->
+<!-- <Realm className="org.apache.catalina.realm.JDBCRealm" debug="99" -->
+<!-- 					driverName="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/locationvoiture" -->
+<!-- 					connectionName="root" connectionPassword="root" userTable="users" -->
+<!-- 					userNameCol="nom" userCredCol="password" userRoleTable="roles" -->
+<!-- 					roleNameCol="role" /> -->
+
+
+<!-- <login-config>	 -->
+<!-- 	<auth-method>FORM</auth-method> -->
+<!-- 	<form-login-config> -->
+<!-- 		<form-login-page>/login.jsf</form-login-page> -->
+<!-- 		<form-error-page>/login.jsf</form-error-page> -->
+<!-- 	</form-login-config> -->
+<!-- </login-config> -->
+ 
+ 
+  <login-config>
+	<auth-method>BASIC</auth-method>
+	<realm-name>Tomcat Manager Application</realm-name>
+</login-config>
+  
+<security-role>
+	<role-name>ROLE_ADMIN</role-name>
+</security-role> 
+<security-role>
+	<role-name>ROLE_USER</role-name>
+</security-role>  
+ 
 </web-app>
