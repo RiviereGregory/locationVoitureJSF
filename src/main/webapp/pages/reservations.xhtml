@@ -16,44 +16,101 @@
 	<ui:param name="reservationL" value="active" />
 	<ui:define name="body">
 
-		<h:form>
+		<h:form id="form">
+			<p:growl id="messages" showDetail="true" />
+
 			<p:dataTable id="datatable" var="reservation"
-				value="#{reservationMB.reservations}" style="width: 100%">
+				value="#{reservationMB.reservations}" style="width: 100%"
+				editable="true">
+
+				<!-- update :form pour id de la form :messages pour l'id de growl -->
+				<p:ajax event="rowEdit" listener="#{reservationMB.onEdit}"
+					update=":form:messages" />
+				<p:ajax event="rowEditCancel" listener="#{reservationMB.onCancel}"
+					update=":form:messages" />
+
+
 				<p:column sortBy="#{reservation.id}"
 					headerText="#{msg['reservation.id']}">
 					<h:outputText value="#{reservation.id}" />
 				</p:column>
 				<p:column sortBy="#{reservation.voiture.id}"
 					headerText="#{msg['reservation.voiture.id']}">
-					<h:outputText value="#{reservation.voiture.id}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{reservation.voiture.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:selectOneMenu value="#{reservation.voiture.id}"
+								required="true">
+								<f:selectItems value="#{voitureMB.selectVoiture}" />
+							</h:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column sortBy="#{reservation.client.id}"
 					headerText="#{msg['reservation.client.id']}">
-					<h:outputText value="#{reservation.client.id}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{reservation.client.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:selectOneMenu value="#{reservation.client.id}" required="true">
+								<f:selectItems value="#{clientMB.selectClient}" />
+							</h:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column sortBy="#{reservation.dateReservation}"
 					headerText="#{msg['reservation.date.reservation']}">
-					<h:outputText value="#{reservation.dateReservation}">
-						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
-						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
-							timeZone="Europe/Paris" />
-					</h:outputText>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{reservation.dateReservation}">
+								<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+									timeZone="Europe/Paris" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{reservation.dateReservation}"
+								id="dateReservation" required="true" pattern="dd/MM/yyyy"
+								locale="fr" navigator="true" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column sortBy="#{reservation.datePriseVehicule}"
 					headerText="#{msg['reservation.date.prisevehicule']}">
-					<h:outputText value="#{reservation.datePriseVehicule}">
-						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
-						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
-							timeZone="Europe/Paris" />
-					</h:outputText>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{reservation.datePriseVehicule}">
+								<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+									timeZone="Europe/Paris" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{reservation.datePriseVehicule}"
+								id="datePriseVehicule" required="true" pattern="dd/MM/yyyy"
+								locale="fr" navigator="true" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column sortBy="#{reservation.dateRetour}"
 					headerText="#{msg['reservation.date.retour']}">
-					<h:outputText value="#{reservation.dateRetour}">
-						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
-						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
-							timeZone="Europe/Paris" />
-					</h:outputText>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{reservation.dateRetour}">
+								<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+									timeZone="Europe/Paris" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{reservation.dateRetour}" id="dateRetour"
+								required="true" pattern="dd/MM/yyyy" locale="fr"
+								navigator="true" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="#{msg['bouton.action']}" colspan="2">
@@ -62,6 +119,10 @@
 					<!-- td pour ajouter une colonne dans la colonne action qui est sur 2 colonne-->
 					<td><h:commandLink action="#{reservationMB.modifyReservation}"
 							value="#{msg['bouton.modify']}"></h:commandLink></td>
+				</p:column>
+
+				<p:column style="width:6%">
+					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"

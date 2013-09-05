@@ -15,6 +15,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.faces.validator.ValidatorException;
 
+import org.primefaces.event.RowEditEvent;
+
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Client;
 import fr.treeptik.model.Reservation;
@@ -133,6 +135,35 @@ public class ReservationManagedBean implements Serializable {
 			throw new ValidatorException(new FacesMessage(
 					bundle.getString("erreur.reservation.date.retour.after")));
 		}
+	}
+
+	// Permet d'utiliser les cellules editable
+	public void onEdit(RowEditEvent event) throws Exception {
+		// Permet de modifier le client dans la base de donnée
+		reservationService.save((Reservation) event.getObject());
+
+		// Internationalisation des messages d'erreur
+		FacesContext context = FacesContext.getCurrentInstance();
+		ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+				.getLocale());
+		String key = bundle.getString("bouton.reservation") + " " + bundle.getString("bouton.edit");
+		FacesMessage msg = new FacesMessage(key, ((Reservation) event.getObject()).getId()
+				.toString());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public void onCancel(RowEditEvent event) {
+		// Internationalisation des messages d'erreur
+		FacesContext context = FacesContext.getCurrentInstance();
+		ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+				.getLocale());
+		String key = bundle.getString("bouton.reservation") + " "
+				+ bundle.getString("bouton.annule");
+		FacesMessage msg = new FacesMessage(key, ((Reservation) event.getObject()).getId()
+				.toString());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	// Pour modifier une valeur du tableau

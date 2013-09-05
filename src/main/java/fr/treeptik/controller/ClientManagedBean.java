@@ -3,12 +3,17 @@ package fr.treeptik.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+
+import org.primefaces.event.RowEditEvent;
 
 import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Client;
@@ -33,6 +38,31 @@ public class ClientManagedBean implements Serializable {
 	private Client client = new Client();
 
 	public ClientManagedBean() {
+	}
+
+	public void onEdit(RowEditEvent event) throws Exception {
+		// Permet de modifier le client dans la base de donnée
+		clientService.save((Client) event.getObject());
+
+		// Internationalisation des messages d'erreur
+		FacesContext context = FacesContext.getCurrentInstance();
+		ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+				.getLocale());
+		String key = bundle.getString("bouton.client") + " " + bundle.getString("bouton.edit");
+		FacesMessage msg = new FacesMessage(key, ((Client) event.getObject()).getNom());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onCancel(RowEditEvent event) {
+		// Internationalisation des messages d'erreur
+		FacesContext context = FacesContext.getCurrentInstance();
+		ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+				.getLocale());
+		String key = bundle.getString("bouton.client") + " " + bundle.getString("bouton.annule");
+		FacesMessage msg = new FacesMessage(key, ((Client) event.getObject()).getNom());
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	// Methode appeler depuis la page avec un bouton plus de notion de GET ou POST

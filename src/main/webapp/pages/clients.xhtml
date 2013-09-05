@@ -18,19 +18,40 @@
 	<ui:define name="body">
 
 
-		<h:form>
+		<h:form id="form">
+			<p:growl id="messages" showDetail="true" />
 
 			<p:dataTable id="dataTable" var="client" value="#{clientMB.clients}"
-				style="width: 100%">
+				style="width: 100%" editable="true">
+
+				<!-- update :form pour id de la form :messages pour l'id de growl -->
+				<p:ajax event="rowEdit" listener="#{clientMB.onEdit}"
+					update=":form:messages" />
+				<p:ajax event="rowEditCancel" listener="#{clientMB.onCancel}"
+					update=":form:messages" />
 
 				<p:column sortBy="#{client.id}" headerText="#{msg['client.id']}">
 					<h:outputText value="#{client.id}" />
 				</p:column>
 				<p:column sortBy="#{client.nom}" headerText="#{msg['client.nom']}">
-					<h:outputText value="#{client.nom}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{client.nom}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{client.nom}" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msg['client.prenom']}">
-					<h:outputText value="#{client.prenom}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{client.prenom}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{client.prenom}" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msg['bouton.action']}" colspan="2">
 					<h:commandLink action="#{clientMB.deleteClient}"
@@ -39,6 +60,11 @@
 					<td><h:commandLink action="#{clientMB.modifyClient}"
 							value="#{msg['bouton.modify']}"></h:commandLink></td>
 				</p:column>
+
+				<p:column style="width:6%">
+					<p:rowEditor />
+				</p:column>
+
 			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"
 				action="accueil" ajax="false" immediate="true"
