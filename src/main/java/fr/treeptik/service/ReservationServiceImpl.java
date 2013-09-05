@@ -39,6 +39,17 @@ public class ReservationServiceImpl extends
 	}
 
 	@Override
+	public List<Reservation> findByClientName(String nom) throws ServiceException {
+		List<Reservation> list;
+		try {
+			list = getDao().findByClientName(nom);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e.getCause());
+		}
+		return list;
+	}
+
+	@Override
 	public List<Reservation> findByVoiture(Integer id) throws ServiceException {
 		List<Reservation> list;
 		try {

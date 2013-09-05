@@ -10,6 +10,8 @@ public interface ReservationService extends GenericService<Reservation, Integer,
 
 	List<Reservation> findByClient(Integer id) throws ServiceException;
 
+	List<Reservation> findByClientName(String nom) throws ServiceException;
+
 	List<Reservation> findByVoiture(Integer id) throws ServiceException;
 
 	List<Reservation> findAllOrderByDateReservation() throws ServiceException;

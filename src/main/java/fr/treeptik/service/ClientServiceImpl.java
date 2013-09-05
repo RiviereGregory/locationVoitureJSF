@@ -49,4 +49,26 @@ public class ClientServiceImpl extends GenericServiceImpl<Client, Integer, Clien
 		}
 		return list;
 	}
+
+	@Override
+	public List<Client> findAllLike(String contient) throws ServiceException {
+		List<Client> list;
+		try {
+			list = clientDAO.findAllLike(contient);
+		} catch (DAOException e) {
+
+			throw new ServiceException(e.getMessage(), e.getCause());
+		}
+		return list;
+	}
+
+	@Override
+	public Client findClientByNameAndSurname(String name, String surname) throws ServiceException {
+		try {
+			return clientDAO.findClientByNameAndSurname(name, surname);
+		} catch (DAOException e) {
+
+			throw new ServiceException(e.getMessage(), e.getCause());
+		}
+	}
 }

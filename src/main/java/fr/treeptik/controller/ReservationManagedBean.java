@@ -3,7 +3,9 @@ package fr.treeptik.controller;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
@@ -21,6 +23,7 @@ import fr.treeptik.exception.ServiceException;
 import fr.treeptik.model.Client;
 import fr.treeptik.model.Reservation;
 import fr.treeptik.model.Voiture;
+import fr.treeptik.service.ClientService;
 import fr.treeptik.service.ReservationService;
 
 @ManagedBean(name = "reservationMB", eager = true)
@@ -33,6 +36,9 @@ public class ReservationManagedBean implements Serializable {
 	// Injection du service dans les pages à la place du ${} on a #{}
 	@ManagedProperty("#{reservationService}")
 	private ReservationService reservationService;
+	
+	@ManagedProperty("#{clientService}")
+	private ClientService clientService;
 
 	private ListDataModel<Reservation> reservations = new ListDataModel<>();
 
@@ -42,6 +48,7 @@ public class ReservationManagedBean implements Serializable {
 	private Date dateReservation;
 	private Date datePriseVehicule;
 	private Date dateRetour;
+	private Client client;
 
 	// Permet de pouvoir utiliser le set pour initialiser les Objets
 	public ReservationManagedBean() {
@@ -152,7 +159,7 @@ public class ReservationManagedBean implements Serializable {
 
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
-	
+
 	public void onCancel(RowEditEvent event) {
 		// Internationalisation des messages d'erreur
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -164,6 +171,27 @@ public class ReservationManagedBean implements Serializable {
 				.toString());
 
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	// Permet de selectionner le nom dans un autoComplete primefaces
+		public List<Client> completeClient(String query) throws Exception {
+			List<Client> items = new ArrayList<>();
+			List<Client> allClient = clientService.findAllLike(query);
+			for (Client c : allClient) {
+				if (c.getNom().startsWith(query)) {
+					items.add(c);
+				}
+			}
+			return items;
+		}
+
+	public String listReservationByName() throws Exception {
+		reservations = new ListDataModel<>();
+		System.out.println("listreservatio : " + client);
+		System.out.println("listReservationByName : " + getClient().getNom());
+
+		reservations.setWrappedData(reservationService.findByClientName(getClient().getNom()));
+		return "reservations";
 	}
 
 	// Pour modifier une valeur du tableau
@@ -234,6 +262,22 @@ public class ReservationManagedBean implements Serializable {
 
 	public void setReservations(ListDataModel<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public ClientService getClientService() {
+		return clientService;
+	}
+
+	public void setClientService(ClientService clientService) {
+		this.clientService = clientService;
 	}
 
 }

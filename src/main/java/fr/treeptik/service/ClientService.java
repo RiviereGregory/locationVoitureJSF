@@ -12,4 +12,8 @@ public interface ClientService extends GenericService<Client, Integer, ClientDAO
 
 	List<Client> findAllOrderByPrenomNom() throws ServiceException;
 
+	List<Client> findAllLike(String contient) throws ServiceException;
+
+	Client findClientByNameAndSurname(String name, String surname) throws ServiceException;
+
 }

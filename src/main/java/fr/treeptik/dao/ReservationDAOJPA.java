@@ -37,6 +37,20 @@ public class ReservationDAOJPA extends GenericDAOJPA<Reservation, Integer> imple
 	}
 
 	@Override
+	public List<Reservation> findByClientName(String nom) throws DAOException {
+		try {
+			TypedQuery<Reservation> query = entityManager.createQuery(
+					"SELECT r FROM  Reservation r WHERE r.client.nom=:nom", Reservation.class);
+			query.setParameter("nom", nom);
+
+			return query.getResultList();
+
+		} catch (PersistenceException e) {
+			throw new DAOException(e.getMessage(), e.getCause());
+		}
+	}
+
+	@Override
 	public List<Reservation> findByVoiture(Integer id) throws DAOException {
 		try {
 			TypedQuery<Reservation> query = entityManager.createQuery(

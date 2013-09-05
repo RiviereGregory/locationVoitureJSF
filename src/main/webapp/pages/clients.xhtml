@@ -30,7 +30,9 @@
 				<p:ajax event="rowEditCancel" listener="#{clientMB.onCancel}"
 					update=":form:messages" />
 
-				<p:column sortBy="#{client.id}" headerText="#{msg['client.id']}">
+				<p:column sortBy="
+					#{client.id}"
+					headerText="#{msg['client.id']}">
 					<h:outputText value="#{client.id}" />
 				</p:column>
 				<p:column sortBy="#{client.nom}" headerText="#{msg['client.nom']}">
@@ -64,7 +66,6 @@
 				<p:column style="width:6%">
 					<p:rowEditor />
 				</p:column>
-
 			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"
 				action="accueil" ajax="false" immediate="true"

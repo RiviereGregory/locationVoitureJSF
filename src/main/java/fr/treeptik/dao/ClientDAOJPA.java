@@ -48,4 +48,36 @@ public class ClientDAOJPA extends GenericDAOJPA<Client, Integer> implements Clie
 		return list;
 	}
 
+	@Override
+	public List<Client> findAllLike(String contient) throws DAOException {
+		List<Client> list;
+		try {
+			TypedQuery<Client> createQuery = entityManager.createQuery(
+					"SELECT cli FROM Client cli WHERE cli.nom LIKE :contient ", Client.class);
+			createQuery.setParameter("contient", contient + "%");
+			list = createQuery.getResultList();
+		} catch (PersistenceException e) {
+			throw new DAOException(e.getMessage(), e.getCause());
+		}
+
+		return list;
+	}
+
+	@Override
+	public Client findClientByNameAndSurname(String name, String surname) throws DAOException {
+		Client client;
+		try {
+			TypedQuery<Client> createQuery = entityManager.createQuery(
+					"SELECT cli FROM Client cli WHERE cli.nom=:name AND cli.prenom=:surname ",
+					Client.class);
+			createQuery.setParameter("name", name);
+			createQuery.setParameter("surname", surname);
+			client = createQuery.getSingleResult();
+		} catch (PersistenceException e) {
+			throw new DAOException(e.getMessage(), e.getCause());
+		}
+
+		return client;
+	}
+
 }
