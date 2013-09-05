@@ -34,7 +34,7 @@
 					<h:outputText value="#{voiture.id}" />
 				</p:column>
 				<p:column sortBy="#{voiture.marque}"
-					headerText="#{msg['voiture.marque']}">
+					headerText="#{msg['voiture.marque']}" filterBy="#{voiture.marque}">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{voiture.marque}" />
