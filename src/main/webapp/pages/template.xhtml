@@ -43,17 +43,19 @@
 				<h:form>
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="accueil.jsf">#{msg['titre.index']}</a></li>
+							<li class="#{accueil}"><a href="accueil.jsf">#{msg['titre.index']}</a></li>
 
 
-							<li><h:commandLink action="#{clientMB.initListClient}"
+							<li class="#{clientL}"><h:commandLink
+									action="#{clientMB.initListClient}"
 									value="#{msg['liste.client']}" /></li>
-							<li><h:commandLink action="#{clientMB.reset}"
-									value="#{msg['ajout.client']}" /></li>
+							<li class="#{clientC}"><h:commandLink
+									action="#{clientMB.reset}" value="#{msg['ajout.client']}" /></li>
 
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">#{msg['bouton.voiture']} <b
-									class="caret"></b></a>
+							<li class="dropdown #{voitureL}"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">#{msg['bouton.voiture']}
+									<b class="caret"></b>
+							</a>
 								<ul class="dropdown-menu">
 									<li><h:commandLink action="#{voitureMB.initListVoiture}"
 											value="#{msg['liste.voiture']}" /></li>
@@ -61,7 +63,7 @@
 											value="#{msg['ajout.voiture']}" /></li>
 
 								</ul></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
+							<li class="dropdown #{reservationL}"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">#{msg['bouton.reservation']} <b
 									class="caret" /></a>
 								<ul class="dropdown-menu">

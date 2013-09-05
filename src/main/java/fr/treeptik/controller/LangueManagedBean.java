@@ -14,8 +14,8 @@ public class LangueManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// Pour pouvoir naviguer avec la locale
-	private Locale locale  = Locale.FRENCH;
-	
+	private Locale locale = Locale.FRENCH;
+
 	public String activerFR() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getViewRoot().setLocale(Locale.FRENCH);

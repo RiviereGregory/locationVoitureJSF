@@ -7,6 +7,8 @@
 <ui:composition template="template.xhtml">
 	<ui:define name="titre">#{msg['titre.index']}</ui:define>
 	<ui:define name="titre body">#{msg['titre.index']}</ui:define>
+	<!-- Ce parametre est utiliser dans la balise <li> du template pour le selectionner -->
+	<ui:param name="accueil" value="active" />
 	<ui:define name="body">
 		<h:form>
 			<p:imageSwitch effect="fade" slideshowAuto="true">
