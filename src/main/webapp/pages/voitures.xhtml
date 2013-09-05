@@ -17,36 +17,77 @@
 	<ui:param name="voitureL" value="active" />
 	<ui:define name="body">
 
-		<h:form>
-
+		<h:form id="form">
+			<p:growl id="messages" showDetail="true" />
 			<h:messages />
 
 			<p:dataTable id="datatable" var="voiture"
-				value="#{voitureMB.voitures}" style="width: 100%">
+				value="#{voitureMB.voitures}" style="width: 100%" editable="true">
+
+				<!-- update :form pour id de la form :messages pour l'id de growl -->
+				<p:ajax event="rowEdit" listener="#{voitureMB.onEdit}"
+					update=":form:messages" />
+				<p:ajax event="rowEditCancel" listener="#{voitureMB.onCancel}"
+					update=":form:messages" />
+
 				<p:column sortBy="#{voiture.id}" headerText="#{msg['voiture.id']}">
 					<h:outputText value="#{voiture.id}" />
 				</p:column>
 				<p:column sortBy="#{voiture.marque}"
 					headerText="#{msg['voiture.marque']}">
-					<h:outputText value="#{voiture.marque}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{voiture.marque}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:keyboard id="marque" value="#{voiture.marque}" required="true"
+								label="#{msg['voiture.marque']}">
+								<f:validateLength minimum="2" />
+							</p:keyboard>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column sortBy="#{voiture.modele}"
 					headerText="#{msg['voiture.modele']}">
-					<h:outputText value="#{voiture.modele}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{voiture.modele}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:keyboard id="modele" value="#{voiture.modele}" required="true"
+								label="#{msg['voiture.modele']}">
+								<f:validateLength minimum="1" />
+							</p:keyboard>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column sortBy="#{voiture.dateMiseEnCirculation}"
 					headerText="#{msg['voiture.date']}">
-					<h:outputText value="#{voiture.dateMiseEnCirculation}">
-						<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
-						<f:convertDateTime type="date" pattern="dd/MM/yyyy"
-							timeZone="Europe/Paris" />
-					</h:outputText>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{voiture.dateMiseEnCirculation}">
+								<!-- timeZone permet d'avoir la bonne date afficher et le pattern le bon format -->
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+									timeZone="Europe/Paris" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{voiture.dateMiseEnCirculation}"
+								id="dateMiseEnCirculation"
+								validator="#{voitureMB.validateDateMiseEnCirculation}"
+								label="#{msg['voiture.date']}" required="true"
+								pattern="dd/MM/yyyy" locale="fr" navigator="true" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msg['bouton.action']}" colspan="2">
 					<h:commandLink action="#{voitureMB.deleteVoiture}"
 						value="#{msg['bouton.supp']}"></h:commandLink>
 					<td><h:commandLink action="#{voitureMB.modifyVoiture}"
 							value="#{msg['bouton.modify']}"></h:commandLink></td>
+				</p:column>
+				<p:column style="width:6%">
+					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 			<h:commandButton id="Index" value="#{msg['bouton.index']}"
