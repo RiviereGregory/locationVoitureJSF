@@ -4,8 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<!-- Pour pouvoir naviguer avec la locale que l'on a selectionne-->
-
 
 <h:head>
 
@@ -19,7 +17,8 @@
 
 				<h:outputLabel value="Simple :" for="acSimple" />
 				<p:autoComplete id="acSimple" value="#{autoCompleteBean.txt1}"
-					completeMethod="#{autoCompleteBean.complete}" />
+					completeMethod="#{autoCompleteBean.complete}">
+				</p:autoComplete>
 
 				<h:outputLabel value="Min Length (3) :" for="acMinLength" />
 				<p:autoComplete id="acMinLength" minQueryLength="3"
@@ -85,6 +84,11 @@
 
 		</p:dialog>
 
+		<p:commandButton id="basic" value="Basic" onclick="PF('dlg1').show();"
+			type="button" />
+		<p:dialog id="basicDialog" header="Basic Dialog" widgetVar="dlg1">
+			<h:outputText value="Resistance to PrimeFaces is futile!" />
+		</p:dialog>
 	</h:form>
 
 </h:body>

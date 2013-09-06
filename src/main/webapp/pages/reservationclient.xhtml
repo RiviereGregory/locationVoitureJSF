@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titre">#{msg['titre.liste.reservation']}</ui:define>
+	<ui:define name="titre body">#{msg['titre.liste.reservation']}</ui:define>
+	<ui:param name="reservationL" value="active" />
+
+	<ui:define name="body">
+		<h:form>
+
+			<table>
+
+				<tr>
+					<td><h:outputLabel for="client"
+							value="#{msg['reservation.client']} : " /></td>
+					<td><h:selectOneMenu
+							value="#{reservationMB.reservation.client.id}" required="true"
+							validator="#{reservationMB.validateClient}">
+							<f:selectItems value="#{clientMB.selectClient}" />
+						</h:selectOneMenu></td>
+				</tr>
+
+
+
+
+				<tr>
+					<!-- Attention ne pas mettre immediate="true" quand on fait une demande a un formulaire car la page n'est pas actualisé -->
+					<td><h:commandButton id="ListReservations"
+							value="#{msg['liste.reservation']}"
+							action="#{reservationMB.listReservationByName}" ajax="false"
+							styleClass="btn btn-default" /></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

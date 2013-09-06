@@ -36,7 +36,7 @@ public class ReservationManagedBean implements Serializable {
 	// Injection du service dans les pages à la place du ${} on a #{}
 	@ManagedProperty("#{reservationService}")
 	private ReservationService reservationService;
-	
+
 	@ManagedProperty("#{clientService}")
 	private ClientService clientService;
 
@@ -63,6 +63,12 @@ public class ReservationManagedBean implements Serializable {
 		reservations = new ListDataModel<>();
 		reservations.setWrappedData(reservationService.findAll());
 		return "reservations";
+	}
+
+	public void initReservation() {
+		reservation = new Reservation();
+		reservation.setClient(new Client());
+		reservation.setVoiture(new Voiture());
 	}
 
 	// Les Validators
@@ -144,6 +150,11 @@ public class ReservationManagedBean implements Serializable {
 		}
 	}
 
+	public void validateClient(FacesContext context, UIComponent component, Object date)
+			throws ValidatorException {
+
+	}
+
 	// Permet d'utiliser les cellules editable
 	public void onEdit(RowEditEvent event) throws Exception {
 		// Permet de modifier le client dans la base de donnée
@@ -172,25 +183,26 @@ public class ReservationManagedBean implements Serializable {
 
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
-	
+
 	// Permet de selectionner le nom dans un autoComplete primefaces
-		public List<Client> completeClient(String query) throws Exception {
-			List<Client> items = new ArrayList<>();
-			List<Client> allClient = clientService.findAllLike(query);
-			for (Client c : allClient) {
-				if (c.getNom().startsWith(query)) {
-					items.add(c);
-				}
+	public List<Client> completeClient(String query) throws Exception {
+		List<Client> items = new ArrayList<>();
+		List<Client> allClient = clientService.findAllLike(query);
+		for (Client c : allClient) {
+			if (c.getNom().startsWith(query)) {
+				items.add(c);
 			}
-			return items;
 		}
+		return items;
+	}
 
 	public String listReservationByName() throws Exception {
+		System.out.println("listreservatio : " + reservation.getClient());
 		reservations = new ListDataModel<>();
-		System.out.println("listreservatio : " + client);
-		System.out.println("listReservationByName : " + getClient().getNom());
+		System.out.println("listReservationByName : " + reservation.getClient().getId());
 
-		reservations.setWrappedData(reservationService.findByClientName(getClient().getNom()));
+		reservations.setWrappedData(reservationService
+				.findByClient(reservation.getClient().getId()));
 		return "reservations";
 	}
 
@@ -227,11 +239,18 @@ public class ReservationManagedBean implements Serializable {
 	}
 
 	public String reset() {
-		this.setReservation(new Reservation());
+		// Pour initialiser la reservatoin avec client et voiture
+		initReservation();
 
 		// On met un return pour ne pas avoir d'erreur dans la page xhtml car action attent un
 		// string pas un void
 		return "reservation";
+	}
+
+	public String reservationClient() {
+		// Pour initialiser la reservatoin avec client et voiture
+		initReservation();
+		return "reservationclient";
 	}
 
 	public String listReservations() {
