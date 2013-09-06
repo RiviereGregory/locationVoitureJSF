@@ -3,9 +3,7 @@ package fr.treeptik.controller;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
@@ -48,7 +46,6 @@ public class ReservationManagedBean implements Serializable {
 	private Date dateReservation;
 	private Date datePriseVehicule;
 	private Date dateRetour;
-	private Client client;
 
 	// Permet de pouvoir utiliser le set pour initialiser les Objets
 	public ReservationManagedBean() {
@@ -184,18 +181,7 @@ public class ReservationManagedBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
-	// Permet de selectionner le nom dans un autoComplete primefaces
-	public List<Client> completeClient(String query) throws Exception {
-		List<Client> items = new ArrayList<>();
-		List<Client> allClient = clientService.findAllLike(query);
-		for (Client c : allClient) {
-			if (c.getNom().startsWith(query)) {
-				items.add(c);
-			}
-		}
-		return items;
-	}
-
+	// Pour le selectOneMenu dans reservationclient
 	public String listReservationByName() throws Exception {
 		System.out.println("listreservatio : " + reservation.getClient());
 		reservations = new ListDataModel<>();
@@ -281,14 +267,6 @@ public class ReservationManagedBean implements Serializable {
 
 	public void setReservations(ListDataModel<Reservation> reservations) {
 		this.reservations = reservations;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	public ClientService getClientService() {

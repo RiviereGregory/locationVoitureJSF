@@ -68,7 +68,7 @@ public class ClientDAOJPA extends GenericDAOJPA<Client, Integer> implements Clie
 		Client client;
 		try {
 			TypedQuery<Client> createQuery = entityManager.createQuery(
-					"SELECT cli FROM Client cli WHERE cli.nom=:name AND cli.prenom=:surname ",
+					"SELECT cli FROM Client cli WHERE cli.nom = :name AND cli.prenom = :surname ",
 					Client.class);
 			createQuery.setParameter("name", name);
 			createQuery.setParameter("surname", surname);

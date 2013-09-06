@@ -76,28 +76,6 @@ public class ClientManagedBean implements Serializable {
 		return initListClient();
 	}
 
-	// Permet de selectionner le nom dans un autoComplete primefaces
-	// public List<Client> nomClient(String query) throws Exception {
-	// List<Client> items = new ArrayList<>();
-	// List<Client> allClient = clientService.findAllLike(query);
-	// for (Client c : allClient) {
-	// if (c.getNom().startsWith(query)) {
-	// items.add(c);
-	// }
-	// }
-	// return items;
-	// }
-	public List<String> nomClient(String query) throws Exception {
-		List<String> items = new ArrayList<>();
-		List<Client> allClient = clientService.findAllLike(query);
-		for (Client c : allClient) {
-			if (c.getNom().startsWith(query)) {
-				items.add(c.getNom());
-			}
-		}
-		return items;
-	}
-
 	// Permet d'initialiser la liste qui sera utiliser dans les datatables de primefaces
 	public String initListClient() throws Exception {
 		clients = new ListDataModel<Client>();
