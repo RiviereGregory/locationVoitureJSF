@@ -17,7 +17,7 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/locationvoiture" />
 		<property name="user" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="" />
 		<!-- nombre maxi de connexion simultané pour les requètes sur la base de 
 			donné -->
 		<property name="maxPoolSize" value="10" />

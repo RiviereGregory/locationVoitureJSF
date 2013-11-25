@@ -43,16 +43,16 @@
   </servlet-mapping>
   
   
-<!--   <security-constraint>  -->
-<!--  	<web-resource-collection> -->
-<!--  		<web-resource-name>AllUser</web-resource-name> -->
-<!--  		<url-pattern>/pages/*</url-pattern> -->
-<!--  	</web-resource-collection> -->
-<!--  	<auth-constraint> -->
-<!--  		<role-name>ROLE_USER</role-name> -->
-<!--  		<role-name>ROLE_ADMIN</role-name> -->
-<!--  	</auth-constraint> 	 -->
-<!--  </security-constraint> -->
+  <security-constraint> 
+ 	<web-resource-collection>
+ 		<web-resource-name>AllUser</web-resource-name>
+ 		<url-pattern>/pages/*</url-pattern>
+ 	</web-resource-collection>
+ 	<auth-constraint>
+ 		<role-name>ROLE_USER</role-name>
+ 		<role-name>ROLE_ADMIN</role-name>
+ 	</auth-constraint> 	
+ </security-constraint>
 
 <!-- Il faut config le server.xml de tomcat avec : -->
 <!-- <Realm className="org.apache.catalina.realm.JDBCRealm" debug="99" -->
@@ -61,7 +61,7 @@
 <!-- 					userNameCol="nom" userCredCol="password" userRoleTable="roles" -->
 <!-- 					roleNameCol="role" /> -->
 
-
+ 
 <login-config>	
 	<auth-method>FORM</auth-method>
 	<realm-name>Tomcat Manager Application</realm-name>
@@ -71,7 +71,7 @@
 	</form-login-config>
 	
 </login-config>
- 
+
  
 <!--   <login-config> -->
 <!-- 	<auth-method>BASIC</auth-method> -->
